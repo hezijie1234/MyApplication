@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="F:\Users\Administrator\AndroidStudioProjects\MyApplication\PullRefresh_library\src\main\assets"/><source path="F:\Users\Administrator\AndroidStudioProjects\MyApplication\PullRefresh_library\build\generated\assets\shaders\debug"/></dataSet><dataSet config="debug"><source path="F:\Users\Administrator\AndroidStudioProjects\MyApplication\PullRefresh_library\src\debug\assets"/></dataSet></merger>

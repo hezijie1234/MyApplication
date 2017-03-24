@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <option name="distributionType" value="LOCAL" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleHome" value="D:\android-studio\android-studio\gradle\gradle-2.14.1" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/PullRefresh_library" />
+            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/coordinator_two" />
+            <option value="$PROJECT_DIR$/coordinatorlayout_one" />
+            <option value="$PROJECT_DIR$/curveanimation" />
+            <option value="$PROJECT_DIR$/day16_anim_shoppingcart_demo" />
+            <option value="$PROJECT_DIR$/day38_appbarlayout_demo" />
+            <option value="$PROJECT_DIR$/day38_collapsingtoolbar_demo" />
+            <option value="$PROJECT_DIR$/list_viewpager_tablayout" />
+          </set>
+        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

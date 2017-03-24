@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.androidxx.yangjw.day38_appbarlayout_demo.MainActivity">
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!--layout_scrollFlags此属性表示当前控件可以滚动，注意：需要滚动的控件必须要在最上面-->
+        <!--取值：
+            scroll：表示控件可以滚动
+            scroll|exitUntilCollapsed和minHeight结合使用：表示有minHeight的范围留在屏幕上
+            scroll|enterAlways作用：先滚动上面，再滚动下面（PS：默认是先滚动下方，在滚动上方）
+            scroll|enterAlways|enterAlwaysCollapsed结合minHeight使用：先滚动上方的minHeight的高度，然后再滚动下方，在滚动上方剩下的内容
+        -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/timg222"
+            app:layout_scrollFlags="scroll|enterAlways|enterAlwaysCollapsed"
+            android:minHeight="50dp"/>
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/main_tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"/>
+    </android.support.design.widget.AppBarLayout>
+
+    <!--NestedScrollView是5.0之后新增的滚动控件，跟之前ScrollView基本一样-->
+    <!--NestedScrollView是的特点就是能和CoordinatorLayout配合使用-->
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+</android.support.design.widget.CoordinatorLayout>
