@@ -17,7 +17,10 @@
             <option value="$PROJECT_DIR$/day16_anim_shoppingcart_demo" />
             <option value="$PROJECT_DIR$/day38_appbarlayout_demo" />
             <option value="$PROJECT_DIR$/day38_collapsingtoolbar_demo" />
+            <option value="$PROJECT_DIR$/greendaotool" />
+            <option value="$PROJECT_DIR$/greendaouse" />
             <option value="$PROJECT_DIR$/list_viewpager_tablayout" />
+            <option value="$PROJECT_DIR$/mygreendao" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

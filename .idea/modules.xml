@@ -11,7 +11,10 @@
       <module fileurl="file://$PROJECT_DIR$/day16_anim_shoppingcart_demo/day16_anim_shoppingcart_demo.iml" filepath="$PROJECT_DIR$/day16_anim_shoppingcart_demo/day16_anim_shoppingcart_demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/day38_appbarlayout_demo/day38_appbarlayout_demo.iml" filepath="$PROJECT_DIR$/day38_appbarlayout_demo/day38_appbarlayout_demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/day38_collapsingtoolbar_demo/day38_collapsingtoolbar_demo.iml" filepath="$PROJECT_DIR$/day38_collapsingtoolbar_demo/day38_collapsingtoolbar_demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/greendaotool/greendaotool.iml" filepath="$PROJECT_DIR$/greendaotool/greendaotool.iml" />
+      <module fileurl="file://$PROJECT_DIR$/greendaouse/greendaouse.iml" filepath="$PROJECT_DIR$/greendaouse/greendaouse.iml" />
       <module fileurl="file://$PROJECT_DIR$/list_viewpager_tablayout/list_viewpager_tablayout.iml" filepath="$PROJECT_DIR$/list_viewpager_tablayout/list_viewpager_tablayout.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mygreendao/mygreendao.iml" filepath="$PROJECT_DIR$/mygreendao/mygreendao.iml" />
     </modules>
   </component>
 </project>
