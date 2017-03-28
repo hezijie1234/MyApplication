@@ -13,8 +13,12 @@
       <module fileurl="file://$PROJECT_DIR$/day38_collapsingtoolbar_demo/day38_collapsingtoolbar_demo.iml" filepath="$PROJECT_DIR$/day38_collapsingtoolbar_demo/day38_collapsingtoolbar_demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/greendaotool/greendaotool.iml" filepath="$PROJECT_DIR$/greendaotool/greendaotool.iml" />
       <module fileurl="file://$PROJECT_DIR$/greendaouse/greendaouse.iml" filepath="$PROJECT_DIR$/greendaouse/greendaouse.iml" />
+      <module fileurl="file://$PROJECT_DIR$/handlersendmessagedemo/handlersendmessagedemo.iml" filepath="$PROJECT_DIR$/handlersendmessagedemo/handlersendmessagedemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/intenetstate/intenetstate.iml" filepath="$PROJECT_DIR$/intenetstate/intenetstate.iml" />
       <module fileurl="file://$PROJECT_DIR$/list_viewpager_tablayout/list_viewpager_tablayout.iml" filepath="$PROJECT_DIR$/list_viewpager_tablayout/list_viewpager_tablayout.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mONIndicator/mONIndicator.iml" filepath="$PROJECT_DIR$/mONIndicator/mONIndicator.iml" />
       <module fileurl="file://$PROJECT_DIR$/mygreendao/mygreendao.iml" filepath="$PROJECT_DIR$/mygreendao/mygreendao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/retrofit_rxjava_progressbar/retrofit_rxjava_progressbar.iml" filepath="$PROJECT_DIR$/retrofit_rxjava_progressbar/retrofit_rxjava_progressbar.iml" />
     </modules>
   </component>
 </project>

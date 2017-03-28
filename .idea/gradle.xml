@@ -19,8 +19,12 @@
             <option value="$PROJECT_DIR$/day38_collapsingtoolbar_demo" />
             <option value="$PROJECT_DIR$/greendaotool" />
             <option value="$PROJECT_DIR$/greendaouse" />
+            <option value="$PROJECT_DIR$/handlersendmessagedemo" />
+            <option value="$PROJECT_DIR$/intenetstate" />
             <option value="$PROJECT_DIR$/list_viewpager_tablayout" />
+            <option value="$PROJECT_DIR$/mONIndicator" />
             <option value="$PROJECT_DIR$/mygreendao" />
+            <option value="$PROJECT_DIR$/retrofit_rxjava_progressbar" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
