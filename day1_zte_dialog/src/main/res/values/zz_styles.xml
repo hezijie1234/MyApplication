@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppbaseTheme" parent="Theme.AppCompat.Light">
+        <item name="windowActionBar">false</item>
+        <!--没有标题-->
+        <item name="windowNoTitle">true</item>
+        <!--Status bar color-->
+        <item name="colorPrimaryDark">@color/zz_colorPrimaryDark</item>
+        <!--Action bar color-->
+        <item name="colorPrimary">@color/zz_colorPrimary</item>
+
+    </style>
+    <style name="zzDialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <!-- 边框 -->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否浮现在activity之上 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 半透明 -->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 无标题 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 背景透明 -->
+        <item name="android:backgroundDimEnabled">true</item>
+        <!-- 模糊 -->
+    </style>
+
+
+</resources>

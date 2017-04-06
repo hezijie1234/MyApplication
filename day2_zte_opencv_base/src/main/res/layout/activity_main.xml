@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/activity_main"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    xmlns:opencv="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.day2_zte_opencv_base.MainActivity">
+    <org.opencv.android.JavaCameraView
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:visibility="visible"
+        android:id="@+id/main_camera"
+        opencv:show_fps="false"
+        opencv:camera_id="any"
+        />
+    <Button
+        android:layout_below="@id/main_camera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="获取图片"
+        android:onClick="openClick"/>
+</RelativeLayout>

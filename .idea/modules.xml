@@ -5,20 +5,11 @@
       <module fileurl="file://$PROJECT_DIR$/MyApplication.iml" filepath="$PROJECT_DIR$/MyApplication.iml" />
       <module fileurl="file://$PROJECT_DIR$/PullRefresh_library/PullRefresh_library.iml" filepath="$PROJECT_DIR$/PullRefresh_library/PullRefresh_library.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/coordinator_two/coordinator_two.iml" filepath="$PROJECT_DIR$/coordinator_two/coordinator_two.iml" />
-      <module fileurl="file://$PROJECT_DIR$/coordinatorlayout_one/coordinatorlayout_one.iml" filepath="$PROJECT_DIR$/coordinatorlayout_one/coordinatorlayout_one.iml" />
-      <module fileurl="file://$PROJECT_DIR$/curveanimation/curveanimation.iml" filepath="$PROJECT_DIR$/curveanimation/curveanimation.iml" />
-      <module fileurl="file://$PROJECT_DIR$/day16_anim_shoppingcart_demo/day16_anim_shoppingcart_demo.iml" filepath="$PROJECT_DIR$/day16_anim_shoppingcart_demo/day16_anim_shoppingcart_demo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/day38_appbarlayout_demo/day38_appbarlayout_demo.iml" filepath="$PROJECT_DIR$/day38_appbarlayout_demo/day38_appbarlayout_demo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/day38_collapsingtoolbar_demo/day38_collapsingtoolbar_demo.iml" filepath="$PROJECT_DIR$/day38_collapsingtoolbar_demo/day38_collapsingtoolbar_demo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/greendaotool/greendaotool.iml" filepath="$PROJECT_DIR$/greendaotool/greendaotool.iml" />
-      <module fileurl="file://$PROJECT_DIR$/greendaouse/greendaouse.iml" filepath="$PROJECT_DIR$/greendaouse/greendaouse.iml" />
-      <module fileurl="file://$PROJECT_DIR$/handlersendmessagedemo/handlersendmessagedemo.iml" filepath="$PROJECT_DIR$/handlersendmessagedemo/handlersendmessagedemo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/intenetstate/intenetstate.iml" filepath="$PROJECT_DIR$/intenetstate/intenetstate.iml" />
-      <module fileurl="file://$PROJECT_DIR$/list_viewpager_tablayout/list_viewpager_tablayout.iml" filepath="$PROJECT_DIR$/list_viewpager_tablayout/list_viewpager_tablayout.iml" />
+      <module fileurl="file://$PROJECT_DIR$/day2_zte_opencv_base/day2_zte_opencv_base.iml" filepath="$PROJECT_DIR$/day2_zte_opencv_base/day2_zte_opencv_base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/day3_zte_bluetooth_base/day3_zte_bluetooth_base.iml" filepath="$PROJECT_DIR$/day3_zte_bluetooth_base/day3_zte_bluetooth_base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/day3_zte_okhttp_demo/day3_zte_okhttp_demo.iml" filepath="$PROJECT_DIR$/day3_zte_okhttp_demo/day3_zte_okhttp_demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/mONIndicator/mONIndicator.iml" filepath="$PROJECT_DIR$/mONIndicator/mONIndicator.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mygreendao/mygreendao.iml" filepath="$PROJECT_DIR$/mygreendao/mygreendao.iml" />
-      <module fileurl="file://$PROJECT_DIR$/retrofit_rxjava_progressbar/retrofit_rxjava_progressbar.iml" filepath="$PROJECT_DIR$/retrofit_rxjava_progressbar/retrofit_rxjava_progressbar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/openCVLibrary320/openCVLibrary320.iml" filepath="$PROJECT_DIR$/openCVLibrary320/openCVLibrary320.iml" />
     </modules>
   </component>
 </project>
