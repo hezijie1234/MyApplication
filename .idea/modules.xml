@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/day3_zte_okhttp_demo/day3_zte_okhttp_demo.iml" filepath="$PROJECT_DIR$/day3_zte_okhttp_demo/day3_zte_okhttp_demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/day4_zte_jiecaovideo/day4_zte_jiecaovideo.iml" filepath="$PROJECT_DIR$/day4_zte_jiecaovideo/day4_zte_jiecaovideo.iml" />
       <module fileurl="file://$PROJECT_DIR$/day5_zte_bigmap/day5_zte_bigmap.iml" filepath="$PROJECT_DIR$/day5_zte_bigmap/day5_zte_bigmap.iml" />
+      <module fileurl="file://$PROJECT_DIR$/day5_zte_bigmap_viewpager/day5_zte_bigmap_viewpager.iml" filepath="$PROJECT_DIR$/day5_zte_bigmap_viewpager/day5_zte_bigmap_viewpager.iml" />
       <module fileurl="file://$PROJECT_DIR$/day5_zte_eventcrash/day5_zte_eventcrash.iml" filepath="$PROJECT_DIR$/day5_zte_eventcrash/day5_zte_eventcrash.iml" />
       <module fileurl="file://$PROJECT_DIR$/photoviewmaster_demo/photoviewmaster_demo.iml" filepath="$PROJECT_DIR$/photoviewmaster_demo/photoviewmaster_demo.iml" />
     </modules>
