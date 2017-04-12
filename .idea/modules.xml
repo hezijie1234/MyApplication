@@ -3,13 +3,13 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MyApplication.iml" filepath="$PROJECT_DIR$/MyApplication.iml" />
-      <module fileurl="file://$PROJECT_DIR$/PullRefresh_library/PullRefresh_library.iml" filepath="$PROJECT_DIR$/PullRefresh_library/PullRefresh_library.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/day2_zte_opencv_base/day2_zte_opencv_base.iml" filepath="$PROJECT_DIR$/day2_zte_opencv_base/day2_zte_opencv_base.iml" />
       <module fileurl="file://$PROJECT_DIR$/day3_zte_bluetooth_base/day3_zte_bluetooth_base.iml" filepath="$PROJECT_DIR$/day3_zte_bluetooth_base/day3_zte_bluetooth_base.iml" />
       <module fileurl="file://$PROJECT_DIR$/day3_zte_okhttp_demo/day3_zte_okhttp_demo.iml" filepath="$PROJECT_DIR$/day3_zte_okhttp_demo/day3_zte_okhttp_demo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/mONIndicator/mONIndicator.iml" filepath="$PROJECT_DIR$/mONIndicator/mONIndicator.iml" />
-      <module fileurl="file://$PROJECT_DIR$/openCVLibrary320/openCVLibrary320.iml" filepath="$PROJECT_DIR$/openCVLibrary320/openCVLibrary320.iml" />
+      <module fileurl="file://$PROJECT_DIR$/day4_zte_jiecaovideo/day4_zte_jiecaovideo.iml" filepath="$PROJECT_DIR$/day4_zte_jiecaovideo/day4_zte_jiecaovideo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/day5_zte_bigmap/day5_zte_bigmap.iml" filepath="$PROJECT_DIR$/day5_zte_bigmap/day5_zte_bigmap.iml" />
+      <module fileurl="file://$PROJECT_DIR$/day5_zte_eventcrash/day5_zte_eventcrash.iml" filepath="$PROJECT_DIR$/day5_zte_eventcrash/day5_zte_eventcrash.iml" />
+      <module fileurl="file://$PROJECT_DIR$/photoviewmaster_demo/photoviewmaster_demo.iml" filepath="$PROJECT_DIR$/photoviewmaster_demo/photoviewmaster_demo.iml" />
     </modules>
   </component>
 </project>

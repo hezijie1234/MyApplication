@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_image_click"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.zte.photoviewmaster_demo.ImageClick">
+
+    <com.bm.library.PhotoView
+        android:id="@+id/img1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/ddd" />
+
+    <com.bm.library.PhotoView
+        android:id="@+id/img2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@mipmap/ddd"
+        android:scaleType="fitCenter"
+        android:visibility="gone" />
+</RelativeLayout>

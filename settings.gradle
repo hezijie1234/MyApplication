@@ -1,2 +1,1 @@
-include ':app', ':PullRefresh_library', ':day2_zte_opencv_base', ':openCVLibrary320', ':day3_zte_bluetooth_base', ':day3_zte_okhttp_demo'
-include ':mONIndicator'
+include ':app', ':day3_zte_bluetooth_base', ':day3_zte_okhttp_demo', ':day4_zte_jiecaovideo', ':day5_zte_eventcrash', ':day5_zte_bigmap', ':photoviewmaster_demo'

@@ -1,10 +1,14 @@
 package com.example.day3_zte_okhttp_demo;
 
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.widget.TextView;
 
 import com.alibaba.fastjson.JSON;
 import com.example.day3_zte_okhttp_demo.api.ApiImpl;
@@ -12,6 +16,7 @@ import com.example.day3_zte_okhttp_demo.api.OnResponseListener;
 import com.google.gson.Gson;
 
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,11 +34,13 @@ import okhttp3.Response;
 public class MainActivity extends AppCompatActivity implements OnResponseListener {
 
     private static final String TAG = "111";
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
     }
 
     public void loadByOkhttp(View view) {

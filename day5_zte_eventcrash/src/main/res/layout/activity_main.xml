@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SlidingPaneLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/activity_main"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    tools:context="com.example.zte.day5_zte_eventcrash.MainActivity">
+        <TextView
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:background="#ff0000"
+            android:text="这是抽屉"/>
+        <com.example.zte.day5_zte_eventcrash.MyViewPager
+            android:id="@+id/viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </com.example.zte.day5_zte_eventcrash.MyViewPager>
+
+</android.support.v4.widget.SlidingPaneLayout>
