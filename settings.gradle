@@ -1,1 +1,1 @@
-include ':app', ':day3_zte_bluetooth_base', ':day3_zte_okhttp_demo', ':day4_zte_jiecaovideo', ':day5_zte_eventcrash', ':day5_zte_bigmap', ':photoviewmaster_demo', ':day5_zte_bigmap_viewpager'
+include ':app', ':day3_zte_bluetooth_base', ':day3_zte_okhttp_demo', ':day4_zte_jiecaovideo', ':day5_zte_eventcrash', ':day5_zte_bigmap', ':photoviewmaster_demo', ':day5_zte_bigmap_viewpager', ':day6_zte_animation_base', ':day6_zte_magicviewpager', ':day6_zte_animation_two'

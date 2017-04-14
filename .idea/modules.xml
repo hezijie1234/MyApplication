@@ -10,6 +10,9 @@
       <module fileurl="file://$PROJECT_DIR$/day5_zte_bigmap/day5_zte_bigmap.iml" filepath="$PROJECT_DIR$/day5_zte_bigmap/day5_zte_bigmap.iml" />
       <module fileurl="file://$PROJECT_DIR$/day5_zte_bigmap_viewpager/day5_zte_bigmap_viewpager.iml" filepath="$PROJECT_DIR$/day5_zte_bigmap_viewpager/day5_zte_bigmap_viewpager.iml" />
       <module fileurl="file://$PROJECT_DIR$/day5_zte_eventcrash/day5_zte_eventcrash.iml" filepath="$PROJECT_DIR$/day5_zte_eventcrash/day5_zte_eventcrash.iml" />
+      <module fileurl="file://$PROJECT_DIR$/day6_zte_animation_base/day6_zte_animation_base.iml" filepath="$PROJECT_DIR$/day6_zte_animation_base/day6_zte_animation_base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/day6_zte_animation_two/day6_zte_animation_two.iml" filepath="$PROJECT_DIR$/day6_zte_animation_two/day6_zte_animation_two.iml" />
+      <module fileurl="file://$PROJECT_DIR$/day6_zte_magicviewpager/day6_zte_magicviewpager.iml" filepath="$PROJECT_DIR$/day6_zte_magicviewpager/day6_zte_magicviewpager.iml" />
       <module fileurl="file://$PROJECT_DIR$/photoviewmaster_demo/photoviewmaster_demo.iml" filepath="$PROJECT_DIR$/photoviewmaster_demo/photoviewmaster_demo.iml" />
     </modules>
   </component>
