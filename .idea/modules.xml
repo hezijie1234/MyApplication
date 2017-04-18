@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/LotusCardDemo/LotusCardDemo.iml" filepath="$PROJECT_DIR$/LotusCardDemo/LotusCardDemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/MyApplication.iml" filepath="$PROJECT_DIR$/MyApplication.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/day3_zte_bluetooth_base/day3_zte_bluetooth_base.iml" filepath="$PROJECT_DIR$/day3_zte_bluetooth_base/day3_zte_bluetooth_base.iml" />
@@ -13,7 +14,14 @@
       <module fileurl="file://$PROJECT_DIR$/day6_zte_animation_base/day6_zte_animation_base.iml" filepath="$PROJECT_DIR$/day6_zte_animation_base/day6_zte_animation_base.iml" />
       <module fileurl="file://$PROJECT_DIR$/day6_zte_animation_two/day6_zte_animation_two.iml" filepath="$PROJECT_DIR$/day6_zte_animation_two/day6_zte_animation_two.iml" />
       <module fileurl="file://$PROJECT_DIR$/day6_zte_magicviewpager/day6_zte_magicviewpager.iml" filepath="$PROJECT_DIR$/day6_zte_magicviewpager/day6_zte_magicviewpager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/day7_zte_sortby_pingyin/day7_zte_sortby_pingyin.iml" filepath="$PROJECT_DIR$/day7_zte_sortby_pingyin/day7_zte_sortby_pingyin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/day8_nfc_base/day8_nfc_base.iml" filepath="$PROJECT_DIR$/day8_nfc_base/day8_nfc_base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/day8_zte_search_listview/day8_zte_search_listview.iml" filepath="$PROJECT_DIR$/day8_zte_search_listview/day8_zte_search_listview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/day9_lotuscarddemo_test/day9_lotuscarddemo_test.iml" filepath="$PROJECT_DIR$/day9_lotuscarddemo_test/day9_lotuscarddemo_test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/nfcDemo/nfcDemo.iml" filepath="$PROJECT_DIR$/nfcDemo/nfcDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/nfc_demo/nfc_demo.iml" filepath="$PROJECT_DIR$/nfc_demo/nfc_demo.iml" />
       <module fileurl="file://$PROJECT_DIR$/photoviewmaster_demo/photoviewmaster_demo.iml" filepath="$PROJECT_DIR$/photoviewmaster_demo/photoviewmaster_demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/searchListView/searchListView.iml" filepath="$PROJECT_DIR$/searchListView/searchListView.iml" />
     </modules>
   </component>
 </project>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/LotusCardDemo/src/cc/lotuscard/LotusCardDemoActivity.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/LotusCardDemo/src/cc/lotuscard/LotusCardDriver.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/LotusCardDemo/src/cc/lotuscard/LotusCardErrorCode.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/LotusCardDemo/src/cc/lotuscard/LotusCardParam.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/LotusCardDemo/src/cc/lotuscard/TwoIdInfoParam.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/day8_zte_search_listview/src/main/java/com/example/zte/day8_zte_search_listview/CharacterParser.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/day8_zte_search_listview/src/main/java/com/example/zte/day8_zte_search_listview/SlideBar.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/day8_zte_search_listview/src/main/java/com/example/zte/day8_zte_search_listview/bean/CityBean.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/day8_zte_search_listview/src/main/java/com/example/zte/day8_zte_search_listview/bean/CountyBean.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/day8_zte_search_listview/src/main/java/com/example/zte/day8_zte_search_listview/bean/ProvinceBean.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/day9_lotuscarddemo_test/src/main/java/cc/lotuscard/LotusCardDemoActivity.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/day9_lotuscarddemo_test/src/main/java/cc/lotuscard/LotusCardDriver.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/day9_lotuscarddemo_test/src/main/java/cc/lotuscard/LotusCardErrorCode.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/day9_lotuscarddemo_test/src/main/java/cc/lotuscard/LotusCardParam.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/day9_lotuscarddemo_test/src/main/java/cc/lotuscard/TwoIdInfoParam.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/nfc_demo/src/main/java/com/r8c/nfc_demo/NfcDemoActivity.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/searchListView/src/main/java/com/example/searchlistview/MainActivity.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/searchListView/src/main/java/com/example/searchlistview/adapter/CityListAdapter.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/searchListView/src/main/java/com/example/searchlistview/adapter/CommonAdapter.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/searchListView/src/main/java/com/example/searchlistview/adapter/ViewHolder.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/searchListView/src/main/java/com/example/searchlistview/bean/CityBean.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/searchListView/src/main/java/com/example/searchlistview/bean/CountyBean.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/searchListView/src/main/java/com/example/searchlistview/bean/ProvinceBean.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/searchListView/src/main/java/com/example/searchlistview/utils/CharacterParser.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/searchListView/src/main/java/com/example/searchlistview/view/SideBar.java" charset="GBK" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

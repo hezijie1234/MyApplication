@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/activity_main"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    tools:context="com.example.zte.day8_zte_search_listview.MainActivity">
+    <EditText
+        android:id="@+id/main_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请输入城市名称"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/main_edit">
+
+
+    <ListView
+        android:id="@+id/main_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <com.example.zte.day8_zte_search_listview.SlideBar
+        android:id="@+id/main_slide"
+        android:layout_width="26dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"/>
+    </FrameLayout>
+</RelativeLayout>
