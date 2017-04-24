@@ -11,23 +11,21 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/LotusCardDemo" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/day3_zte_bluetooth_base" />
-            <option value="$PROJECT_DIR$/day3_zte_okhttp_demo" />
+            <option value="$PROJECT_DIR$/day10_qq_longin" />
+            <option value="$PROJECT_DIR$/day10_qq_longin_test" />
+            <option value="$PROJECT_DIR$/day10_zte_baidumap" />
             <option value="$PROJECT_DIR$/day4_zte_jiecaovideo" />
-            <option value="$PROJECT_DIR$/day5_zte_bigmap" />
-            <option value="$PROJECT_DIR$/day5_zte_bigmap_viewpager" />
-            <option value="$PROJECT_DIR$/day5_zte_eventcrash" />
-            <option value="$PROJECT_DIR$/day6_zte_animation_base" />
-            <option value="$PROJECT_DIR$/day6_zte_animation_two" />
-            <option value="$PROJECT_DIR$/day6_zte_magicviewpager" />
-            <option value="$PROJECT_DIR$/day7_zte_sortby_pingyin" />
             <option value="$PROJECT_DIR$/day8_nfc_base" />
             <option value="$PROJECT_DIR$/day8_zte_search_listview" />
             <option value="$PROJECT_DIR$/day9_lotuscarddemo_test" />
+            <option value="$PROJECT_DIR$/day9_zxing_demo" />
+            <option value="$PROJECT_DIR$/day9_zxing_twodim" />
+            <option value="$PROJECT_DIR$/jingwutongtest" />
             <option value="$PROJECT_DIR$/nfcDemo" />
             <option value="$PROJECT_DIR$/nfc_demo" />
-            <option value="$PROJECT_DIR$/photoviewmaster_demo" />
             <option value="$PROJECT_DIR$/searchListView" />
+            <option value="$PROJECT_DIR$/twoDimCode" />
+            <option value="$PROJECT_DIR$/zxinglite" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

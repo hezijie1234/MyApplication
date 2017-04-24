@@ -42,6 +42,7 @@ public class BigImageActivity extends AppCompatActivity {
                 imageView.setLayoutParams(layoutParams);
                 imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
                 Picasso.with(BigImageActivity.this).load(urlList.get(position)).into(imageView);
+
                 container.addView(imageView);
                 imageView.setOnClickListener(new View.OnClickListener() {
                     @Override

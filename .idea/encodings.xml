@@ -26,6 +26,8 @@
     <file url="file://$PROJECT_DIR$/searchListView/src/main/java/com/example/searchlistview/bean/ProvinceBean.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/searchListView/src/main/java/com/example/searchlistview/utils/CharacterParser.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/searchListView/src/main/java/com/example/searchlistview/view/SideBar.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/twoDimCode/src/main/java/com/wyy/twodimcode/CaptureActivity.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/twoDimCode/src/main/java/com/wyy/twodimcode/MainActivity.java" charset="GBK" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

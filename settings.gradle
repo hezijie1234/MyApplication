@@ -1,4 +1,5 @@
-include ':app', ':day3_zte_bluetooth_base', ':day3_zte_okhttp_demo', ':day4_zte_jiecaovideo', ':day5_zte_eventcrash', ':day5_zte_bigmap', ':photoviewmaster_demo', ':day5_zte_bigmap_viewpager', ':day6_zte_animation_base', ':day6_zte_magicviewpager', ':day6_zte_animation_two', ':day7_zte_sortby_pingyin', ':day8_zte_search_listview', ':day8_nfc_base', ':LotusCardDemo', ':day9_lotuscarddemo_test'
+include ':app', ':day8_zte_search_listview', ':day8_nfc_base', ':LotusCardDemo', ':day9_lotuscarddemo_test', ':day9_zxing_demo', ':day9_zxing_twodim', ':zxinglite', ':day10_qq_longin', ':day10_qq_longin_test', ':day10_zte_baidumap'
 include ':searchListView'
 include ':nfc_demo'
 include ':nfcDemo'
+include ':twoDimCode', ':jingwutongtest', ':day4_zte_jiecaovideo'
