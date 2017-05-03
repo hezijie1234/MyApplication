@@ -2,24 +2,17 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/LotusCardDemo/LotusCardDemo.iml" filepath="$PROJECT_DIR$/LotusCardDemo/LotusCardDemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/MyApplication.iml" filepath="$PROJECT_DIR$/MyApplication.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/day10_qq_longin/day10_qq_longin.iml" filepath="$PROJECT_DIR$/day10_qq_longin/day10_qq_longin.iml" />
-      <module fileurl="file://$PROJECT_DIR$/day10_qq_longin_test/day10_qq_longin_test.iml" filepath="$PROJECT_DIR$/day10_qq_longin_test/day10_qq_longin_test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/day10_zte_baidumap/day10_zte_baidumap.iml" filepath="$PROJECT_DIR$/day10_zte_baidumap/day10_zte_baidumap.iml" />
-      <module fileurl="file://$PROJECT_DIR$/day4_zte_jiecaovideo/day4_zte_jiecaovideo.iml" filepath="$PROJECT_DIR$/day4_zte_jiecaovideo/day4_zte_jiecaovideo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/day8_nfc_base/day8_nfc_base.iml" filepath="$PROJECT_DIR$/day8_nfc_base/day8_nfc_base.iml" />
-      <module fileurl="file://$PROJECT_DIR$/day8_zte_search_listview/day8_zte_search_listview.iml" filepath="$PROJECT_DIR$/day8_zte_search_listview/day8_zte_search_listview.iml" />
-      <module fileurl="file://$PROJECT_DIR$/day9_lotuscarddemo_test/day9_lotuscarddemo_test.iml" filepath="$PROJECT_DIR$/day9_lotuscarddemo_test/day9_lotuscarddemo_test.iml" />
-      <module fileurl="file://$PROJECT_DIR$/day9_zxing_demo/day9_zxing_demo.iml" filepath="$PROJECT_DIR$/day9_zxing_demo/day9_zxing_demo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/day9_zxing_twodim/day9_zxing_twodim.iml" filepath="$PROJECT_DIR$/day9_zxing_twodim/day9_zxing_twodim.iml" />
-      <module fileurl="file://$PROJECT_DIR$/jingwutongtest/jingwutongtest.iml" filepath="$PROJECT_DIR$/jingwutongtest/jingwutongtest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/nfcDemo/nfcDemo.iml" filepath="$PROJECT_DIR$/nfcDemo/nfcDemo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/nfc_demo/nfc_demo.iml" filepath="$PROJECT_DIR$/nfc_demo/nfc_demo.iml" />
-      <module fileurl="file://$PROJECT_DIR$/searchListView/searchListView.iml" filepath="$PROJECT_DIR$/searchListView/searchListView.iml" />
-      <module fileurl="file://$PROJECT_DIR$/twoDimCode/twoDimCode.iml" filepath="$PROJECT_DIR$/twoDimCode/twoDimCode.iml" />
-      <module fileurl="file://$PROJECT_DIR$/zxinglite/zxinglite.iml" filepath="$PROJECT_DIR$/zxinglite/zxinglite.iml" />
+      <module fileurl="file://$PROJECT_DIR$/day11_zte_checkboxin_listview/day11_zte_checkboxin_listview.iml" filepath="$PROJECT_DIR$/day11_zte_checkboxin_listview/day11_zte_checkboxin_listview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/day11_zte_notification/day11_zte_notification.iml" filepath="$PROJECT_DIR$/day11_zte_notification/day11_zte_notification.iml" />
+      <module fileurl="file://$PROJECT_DIR$/day12_zte_checkboxtest/day12_zte_checkboxtest.iml" filepath="$PROJECT_DIR$/day12_zte_checkboxtest/day12_zte_checkboxtest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/day12_zte_testretrofit/day12_zte_testretrofit.iml" filepath="$PROJECT_DIR$/day12_zte_testretrofit/day12_zte_testretrofit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/day12_zte_testrxjava/day12_zte_testrxjava.iml" filepath="$PROJECT_DIR$/day12_zte_testrxjava/day12_zte_testrxjava.iml" />
+      <module fileurl="file://$PROJECT_DIR$/day13_zte_okhttp3_retrofit_cookie/day13_zte_okhttp3_retrofit_cookie.iml" filepath="$PROJECT_DIR$/day13_zte_okhttp3_retrofit_cookie/day13_zte_okhttp3_retrofit_cookie.iml" />
+      <module fileurl="file://$PROJECT_DIR$/day14_zte_retrofit_interceptor/day14_zte_retrofit_interceptor.iml" filepath="$PROJECT_DIR$/day14_zte_retrofit_interceptor/day14_zte_retrofit_interceptor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/day15_zte_retrofit_interceptor2/day15_zte_retrofit_interceptor2.iml" filepath="$PROJECT_DIR$/day15_zte_retrofit_interceptor2/day15_zte_retrofit_interceptor2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/day_zte_notification_push/day_zte_notification_push.iml" filepath="$PROJECT_DIR$/day_zte_notification_push/day_zte_notification_push.iml" />
     </modules>
   </component>
 </project>

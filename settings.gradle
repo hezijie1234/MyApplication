@@ -1,5 +1,2 @@
-include ':app', ':day8_zte_search_listview', ':day8_nfc_base', ':LotusCardDemo', ':day9_lotuscarddemo_test', ':day9_zxing_demo', ':day9_zxing_twodim', ':zxinglite', ':day10_qq_longin', ':day10_qq_longin_test', ':day10_zte_baidumap'
-include ':searchListView'
-include ':nfc_demo'
-include ':nfcDemo'
-include ':twoDimCode', ':jingwutongtest', ':day4_zte_jiecaovideo'
+include ':app', ':day_zte_notification_push', ':day11_zte_notification', ':day11_zte_checkboxin_listview', ':day12_zte_testrxjava', ':day12_zte_testretrofit', ':day12_zte_checkboxtest', ':day13_zte_okhttp3_retrofit_cookie', ':day14_zte_retrofit_interceptor', ':day15_zte_retrofit_interceptor2'
+

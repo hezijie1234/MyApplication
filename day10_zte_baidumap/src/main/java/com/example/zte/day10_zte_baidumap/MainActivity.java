@@ -1,8 +1,14 @@
 package com.example.zte.day10_zte_baidumap;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -58,6 +64,7 @@ import overlayutil.PoiOverlay;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "111";
+    private static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 1;
     private BaiduMap baiduMap;
     private PoiSearch poiSearch;
     private EditText mCityEdit;
@@ -65,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
     private SuggestionSearch suggestionSearch;
     private ArrayAdapter<String> arrayAdapter;
     private ArrayList<String> searchResult;
-    public BDLocationListener myListener = new MyLocationListener();
     private LocationClient mLocationClient;
     private double latitude;
     private double longitude;
@@ -75,22 +81,58 @@ public class MainActivity extends AppCompatActivity {
 //    LatLng northeast = new LatLng( 39.947246, 116.414977);
 //    LatLngBounds searchbound = new LatLngBounds.Builder().include(southwest).include(northeast).build();
 
+    /**权限申请的结果回调借口
+     * @param requestCode
+     * @param permissions
+     * @param grantResults
+     */
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_READ_CONTACTS:
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    //用户同意权限.
+                    Log.e(TAG, "onRequestPermissionsResult: "+"用户同意了权限申请" );
+                    location();
+                } else {
+                    //当用户拒绝提供定位权限时
+                    Log.e(TAG, "onRequestPermissionsResult: "+"用户拒绝了权限" );
+                }
+                return;
+
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SDKInitializer.initialize(getApplicationContext());
         setContentView(R.layout.activity_main);
+        if(Build.VERSION.SDK_INT >= 23){
+        //检查定位权限是否开启
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            Log.e(TAG, "onCreate: "+"发现定位权限没有" );
+            //没开启，久执行下面的方法申请权限，权限申请结果在回调借口中。
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
+                    MY_PERMISSIONS_REQUEST_READ_CONTACTS);
+        }else{
+            Log.e(TAG, "onCreate: "+"定位权限已经拥有，可以开始定位" );
+            //如果权限已经拥有，久直接定位
+            location();
+        }
+        }
         mCityEdit = (EditText) findViewById(R.id.main_city);
         mAutoEdit = (AutoCompleteTextView) findViewById(R.id.main_searchkey);
         arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_dropdown_item_1line);
         mAutoEdit.setAdapter(arrayAdapter);
         mAutoEdit.setThreshold(1);
-        mLocationClient = new LocationClient(this);
-        //设置定位监听
-        mLocationClient.registerLocationListener( myListener );//注册监听函数
-        initLocation();
-        //开始定位
-        mLocationClient.start();//声明LocationClient类
+
         suggestionSearch = SuggestionSearch.newInstance();
         //设置搜索监听，获取搜索的结果
         suggestionSearch.setOnGetSuggestionResultListener(new OnGetSuggestionResultListener() {
@@ -105,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
                         searchResult.add(info.key);
                     }
                 }
-                arrayAdapter = new ArrayAdapter<String>(MainActivity.this,android.R.layout.simple_dropdown_item_1line,searchResult);
+                arrayAdapter = new ArrayAdapter<>(MainActivity.this,android.R.layout.simple_dropdown_item_1line,searchResult);
                 mAutoEdit.setAdapter(arrayAdapter);
                 arrayAdapter.notifyDataSetChanged();
             }
@@ -210,6 +252,37 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void location() {
+        mLocationClient = new LocationClient(this);
+        initLocation();
+        //开始定位
+        mLocationClient.start();//声明LocationClient类
+        //设置定位监听
+        mLocationClient.registerLocationListener(new BDLocationListener() {
+            @Override
+            public void onReceiveLocation(BDLocation location) {
+                //Receive Location
+                latitude = location.getLatitude();
+
+                longitude = location.getLongitude();
+                Log.e(TAG, "onReceiveLocation: "+latitude+"____"+longitude );
+                String city = location.getAddress().city;
+                String s = city.substring(0, city.length()-1);
+                String street = location.getAddress().street;
+
+                if (!location.equals(null)) {
+                    mLocationClient.stop();
+
+                }
+            }
+
+            @Override
+            public void onConnectHotSpotMessage(String s, int i) {
+
+            }
+        });//注册监听函数
+    }
+
     /**测试发现百度地图搜索并且获取覆盖物，必须要设置成点击事件。
      * @param view
      */
@@ -273,29 +346,6 @@ public class MainActivity extends AppCompatActivity {
         option.setEnableSimulateGps(false);//可选，默认false，设置是否需要过滤GPS仿真结果，默认需要
         mLocationClient.setLocOption(option);
     }
-    //定位监听
-    public class MyLocationListener implements BDLocationListener {
 
-        @Override
-        public void onReceiveLocation(BDLocation location) {
-            //Receive Location
-             latitude = location.getLatitude();
-
-             longitude = location.getLongitude();
-            Log.e(TAG, "onReceiveLocation: "+latitude+"____"+longitude );
-            String city = location.getAddress().city;
-            String s = city.substring(0, city.length()-1);
-            String street = location.getAddress().street;
-
-            if (!location.equals(null)) {
-                mLocationClient.stop();
-
-            }
-        }
-
-        @Override
-        public void onConnectHotSpotMessage(String s, int i) {
-        }
-    }
 
 }

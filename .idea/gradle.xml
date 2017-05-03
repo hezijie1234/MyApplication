@@ -9,23 +9,16 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/LotusCardDemo" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/day10_qq_longin" />
-            <option value="$PROJECT_DIR$/day10_qq_longin_test" />
-            <option value="$PROJECT_DIR$/day10_zte_baidumap" />
-            <option value="$PROJECT_DIR$/day4_zte_jiecaovideo" />
-            <option value="$PROJECT_DIR$/day8_nfc_base" />
-            <option value="$PROJECT_DIR$/day8_zte_search_listview" />
-            <option value="$PROJECT_DIR$/day9_lotuscarddemo_test" />
-            <option value="$PROJECT_DIR$/day9_zxing_demo" />
-            <option value="$PROJECT_DIR$/day9_zxing_twodim" />
-            <option value="$PROJECT_DIR$/jingwutongtest" />
-            <option value="$PROJECT_DIR$/nfcDemo" />
-            <option value="$PROJECT_DIR$/nfc_demo" />
-            <option value="$PROJECT_DIR$/searchListView" />
-            <option value="$PROJECT_DIR$/twoDimCode" />
-            <option value="$PROJECT_DIR$/zxinglite" />
+            <option value="$PROJECT_DIR$/day11_zte_checkboxin_listview" />
+            <option value="$PROJECT_DIR$/day11_zte_notification" />
+            <option value="$PROJECT_DIR$/day12_zte_checkboxtest" />
+            <option value="$PROJECT_DIR$/day12_zte_testretrofit" />
+            <option value="$PROJECT_DIR$/day12_zte_testrxjava" />
+            <option value="$PROJECT_DIR$/day13_zte_okhttp3_retrofit_cookie" />
+            <option value="$PROJECT_DIR$/day14_zte_retrofit_interceptor" />
+            <option value="$PROJECT_DIR$/day15_zte_retrofit_interceptor2" />
+            <option value="$PROJECT_DIR$/day_zte_notification_push" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
