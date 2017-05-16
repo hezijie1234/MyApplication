@@ -4,11 +4,14 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
@@ -48,6 +51,8 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
     public static final String CASH = PROJECT_FOLDER_PATH + "cashes" + File.separator;
     /**缓存用的单张图片**/
     public static final String CASH_IMG = CASH+"cash.png";
+
+    private ImageView image;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +78,13 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
             mLoaderCallback.onManagerConnected(LoaderCallbackInterface.SUCCESS);
         }
     }
+
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            image.setImageBitmap((Bitmap)msg.obj);
+        }
+    };
 
     private CascadeClassifier mJavaDetector;
     BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
@@ -124,15 +136,13 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
     };
 
     private void initViews() {
+        image = (ImageView) findViewById(R.id.main_image);
         cameraView = (JavaCameraView) findViewById(R.id.main_camera);
         cameraView.setCvCameraViewListener(this);
         //使用前置摄像头来获取图像。
         cameraView.setCameraIndex(CameraBridgeViewBase.CAMERA_ID_FRONT);
     }
 
-    public void openClick(View view) {
-
-    }
 
     /**相机开启时久会调用该方法，一般在该函数内部新建Mat用于存储图片。
      * @param width  -  the width of the frames that will be delivered被传递进来的视屏的宽度
@@ -179,17 +189,23 @@ public class MainActivity extends AppCompatActivity implements CameraBridgeViewB
         if (facesArray.length > 0 && !isFinished ) {
             num++;
             if (num % FACE_SUCCESS_COUNT == 0) {
-
+                Log.e(TAG, "onCameraFrame: "+"截取人脸"+"num的值"+num );
                 Mat mat = getDefaultCompareSize(mRgba.submat(facesArray[0]));
 //                compare(mat,headMat);
                 Imgcodecs.imwrite(CASH_IMG, mat);
                 Bitmap bitmap = BitmapFactory.decodeFile(CASH_IMG);
-                //bitmap = ImageUtils.compressImage(bitmap);
+//                bitmap = ImageUtils.compressImage(bitmap);
                 //ImageUtils.saveBitmapLocal(bitmap,Constants.CASH_IMG,80);
+                Message message = handler.obtainMessage();
+                message.obj = bitmap;
+                message.sendToTarget();
+                //image.setImageBitmap(bitmap);
             }
             //在这里画矩形
             Imgproc.rectangle(mRgba, facesArray[0].tl(), facesArray[0].br(), FACE_RECT_COLOR, 3);
+            Log.e(TAG, "画边框 "+facesArray.length );
         } else {
+            //当外框截取失败（即facesArray.length == 0）的时候就将num归零。
             num = 0;
         }
         return mRgba;

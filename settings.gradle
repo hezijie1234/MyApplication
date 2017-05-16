@@ -1,2 +1,2 @@
-include ':app', ':day_zte_notification_push', ':day11_zte_notification', ':day11_zte_checkboxin_listview', ':day12_zte_testrxjava', ':day12_zte_testretrofit', ':day12_zte_checkboxtest', ':day13_zte_okhttp3_retrofit_cookie', ':day14_zte_retrofit_interceptor', ':day15_zte_retrofit_interceptor2', ':day16_zte_retrofit_uploading'
+include ':app', ':day23_zte_documentdelivery'
 

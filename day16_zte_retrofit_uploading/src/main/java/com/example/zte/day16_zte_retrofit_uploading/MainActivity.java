@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,7 +25,7 @@ import java.io.InputStream;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "111";
     private static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 1;
-    String sdPath= Environment.getExternalStorageDirectory().getAbsolutePath();
+    String sdPath;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,28 +64,34 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void uploadClick(View view) {
-        File file = new File(sdPath);
-        if(!file.exists()){
-            file.mkdir();
-        }
-        //pic.rgb8
-        File ff = new File(file,"test.txt");
-        Log.e(TAG, "uploadClick: "+ff.getAbsolutePath() );
-        byte[] bb = null;
-        FileInputStream ins;
-        try {
-            Log.e(TAG, "uploadClick: "+ff.length() );
-            ins=new FileInputStream(ff);
-            ff.length();
+        boolean sdExist = Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
+        if(sdExist){
+            sdPath = Environment.getExternalStorageDirectory().getAbsolutePath();
+            File file = new File(sdPath);
+            //pic.rgb8
+            //File ff = new File(file,"pic.rgb8");
+            //Log.e(TAG, "uploadClick: "+ff.getAbsolutePath() );
+            byte[] bb = null;
+            FileInputStream ins;
+            try {
+                //Log.e(TAG, "uploadClick: "+ff.length() );
+//                ins=new FileInputStream(ff);
+                ins=new FileInputStream(file.getCanonicalFile()+"/pic.rgb8");
 
-            bb=new byte[(int) ff.length()];
-            ins.read(bb,0, (int) ff.length());
-            ins.close();
+                //ff.length();
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+//                bb=new byte[(int) ff.length()];
+                bb = new byte[ins.available()];
+                ins.read(bb);
+                Log.e(TAG, "uploadClick: "+"读取流完毕" );
+//                ins.read(bb,0, (int) ff.length());
+                ins.close();
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -124,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
 
         /* 创建File对象，确定需要读取文件的信息 */
             File file = new File(Environment.getExternalStorageDirectory(),"test.txt");
+            Log.e(TAG, "readFile: "+file.getAbsolutePath() );
 
         /* FileInputSteam 输入流的对象， */
             FileInputStream fis = new FileInputStream(file);
@@ -140,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
         /* 将字节数组转换成字符创， 并转换编码的格式 */
             //String res = EncodingUtils.getString(buffer, "UTF-8");
 
-            Toast.makeText(MainActivity.this, "文件读取成功，您读取的数据为：", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "文件读取成功，您读取的数据为："+new String(buffer,"UTF-8"), Toast.LENGTH_SHORT).show();
 
         }catch(Exception ex){
             Toast.makeText(MainActivity.this, "文件读取失败！", Toast.LENGTH_SHORT).show();
@@ -148,13 +156,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void readResource(View view) {
-        InputStream is = this.getResources().openRawResource(R.raw.test);
+        InputStream is = this.getResources().openRawResource(R.raw.pic);
         DataInputStream dis = new DataInputStream(is);
         byte[]buffer = new byte[0];
         try {
             buffer = new byte[is.available()];
             dis.readFully(buffer);
-            Log.e(TAG, "readResource: "+new String(buffer) );
+            Log.e(TAG, "readResource: "+new String(buffer,"UTF-8") );
             dis.close();
             is.close();
         } catch (IOException e) {

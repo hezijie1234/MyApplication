@@ -112,20 +112,20 @@ public class MainActivity extends AppCompatActivity {
         SDKInitializer.initialize(getApplicationContext());
         setContentView(R.layout.activity_main);
         if(Build.VERSION.SDK_INT >= 23){
-        //检查定位权限是否开启
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            Log.e(TAG, "onCreate: "+"发现定位权限没有" );
-            //没开启，久执行下面的方法申请权限，权限申请结果在回调借口中。
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
-                    MY_PERMISSIONS_REQUEST_READ_CONTACTS);
-        }else{
-            Log.e(TAG, "onCreate: "+"定位权限已经拥有，可以开始定位" );
-            //如果权限已经拥有，久直接定位
-            location();
-        }
+            //检查定位权限是否开启
+            if (ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.ACCESS_COARSE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED) {
+                Log.e(TAG, "onCreate: "+"发现定位权限没有" );
+                //没开启，久执行下面的方法申请权限，权限申请结果在回调借口中。
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
+                        MY_PERMISSIONS_REQUEST_READ_CONTACTS);
+            }else{
+                Log.e(TAG, "onCreate: "+"定位权限已经拥有，可以开始定位" );
+                //如果权限已经拥有，久直接定位
+                location();
+            }
         }
         mCityEdit = (EditText) findViewById(R.id.main_city);
         mAutoEdit = (AutoCompleteTextView) findViewById(R.id.main_searchkey);

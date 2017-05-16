@@ -6,16 +6,17 @@
     tools:context="com.example.day2_zte_opencv_base.MainActivity">
     <org.opencv.android.JavaCameraView
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="300dp"
         android:visibility="visible"
         android:id="@+id/main_camera"
         opencv:show_fps="false"
         opencv:camera_id="any"
         />
-    <Button
-        android:layout_below="@id/main_camera"
+    <ImageView
+        android:id="@+id/main_image"
+        android:src="@mipmap/ic_launcher"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="获取图片"
-        android:onClick="openClick"/>
+        android:layout_below="@id/main_camera"
+        />
 </RelativeLayout>

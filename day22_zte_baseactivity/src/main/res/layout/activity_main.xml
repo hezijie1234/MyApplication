@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/activity_main"
+    android:orientation="vertical"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+
+    tools:context="com.example.zte.day22_zte_baseactivity.MainActivity">
+    <include layout="@layout/title_bar"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="开始下载按钮"
+        android:onClick="loadClick"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="结束下载按钮"
+        android:onClick="unloadClick"/>
+
+</LinearLayout>
