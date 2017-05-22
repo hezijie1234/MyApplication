@@ -4,16 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/MyApplication.iml" filepath="$PROJECT_DIR$/MyApplication.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/day11_zte_checkboxin_listview/day11_zte_checkboxin_listview.iml" filepath="$PROJECT_DIR$/day11_zte_checkboxin_listview/day11_zte_checkboxin_listview.iml" />
-      <module fileurl="file://$PROJECT_DIR$/day11_zte_notification/day11_zte_notification.iml" filepath="$PROJECT_DIR$/day11_zte_notification/day11_zte_notification.iml" />
-      <module fileurl="file://$PROJECT_DIR$/day12_zte_checkboxtest/day12_zte_checkboxtest.iml" filepath="$PROJECT_DIR$/day12_zte_checkboxtest/day12_zte_checkboxtest.iml" />
-      <module fileurl="file://$PROJECT_DIR$/day12_zte_testretrofit/day12_zte_testretrofit.iml" filepath="$PROJECT_DIR$/day12_zte_testretrofit/day12_zte_testretrofit.iml" />
-      <module fileurl="file://$PROJECT_DIR$/day12_zte_testrxjava/day12_zte_testrxjava.iml" filepath="$PROJECT_DIR$/day12_zte_testrxjava/day12_zte_testrxjava.iml" />
-      <module fileurl="file://$PROJECT_DIR$/day13_zte_okhttp3_retrofit_cookie/day13_zte_okhttp3_retrofit_cookie.iml" filepath="$PROJECT_DIR$/day13_zte_okhttp3_retrofit_cookie/day13_zte_okhttp3_retrofit_cookie.iml" />
-      <module fileurl="file://$PROJECT_DIR$/day14_zte_retrofit_interceptor/day14_zte_retrofit_interceptor.iml" filepath="$PROJECT_DIR$/day14_zte_retrofit_interceptor/day14_zte_retrofit_interceptor.iml" />
-      <module fileurl="file://$PROJECT_DIR$/day15_zte_retrofit_interceptor2/day15_zte_retrofit_interceptor2.iml" filepath="$PROJECT_DIR$/day15_zte_retrofit_interceptor2/day15_zte_retrofit_interceptor2.iml" />
-      <module fileurl="file://$PROJECT_DIR$/day16_zte_retrofit_uploading/day16_zte_retrofit_uploading.iml" filepath="$PROJECT_DIR$/day16_zte_retrofit_uploading/day16_zte_retrofit_uploading.iml" />
-      <module fileurl="file://$PROJECT_DIR$/day_zte_notification_push/day_zte_notification_push.iml" filepath="$PROJECT_DIR$/day_zte_notification_push/day_zte_notification_push.iml" />
+      <module fileurl="file://$PROJECT_DIR$/day24_zte_wechat/day24_zte_wechat.iml" filepath="$PROJECT_DIR$/day24_zte_wechat/day24_zte_wechat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/day26_zte_selfdefinition_view/day26_zte_selfdefinition_view.iml" filepath="$PROJECT_DIR$/day26_zte_selfdefinition_view/day26_zte_selfdefinition_view.iml" />
     </modules>
   </component>
 </project>
