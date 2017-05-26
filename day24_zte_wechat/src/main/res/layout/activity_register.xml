@@ -20,12 +20,14 @@
             android:layout_marginBottom="10dp"
             android:layout_height="wrap_content">
             <TextView
+
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="15sp"
                 android:text="昵称"/>
             <EditText
+                android:id="@+id/activity_register_nick_name_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="例如：李晨"
@@ -72,6 +74,7 @@
                 android:textSize="15sp"
                 android:text="+86"/>
             <EditText
+                android:id="@+id/activity_register_phonenum_et"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="你的手机号码"
@@ -95,14 +98,17 @@
                 android:textSize="15sp"
                 android:text="密码"/>
             <EditText
+                android:id="@+id/activity_register_password_et"
                 android:layout_toRightOf="@id/activity_register_psw"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="填写密码"
+                android:inputType="textPassword"
                 android:background="@null"
                 android:textColorHint="@color/gray3"
                 android:textSize="15sp"/>
             <ImageView
+                android:id="@+id/activity_register_showpassword_iv"
                 android:layout_alignParentRight="true"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
@@ -124,7 +130,7 @@
                 android:textSize="15sp"
                 android:text="验证码"/>
             <EditText
-                android:id="@+id/activity_register_edittext1"
+                android:id="@+id/activity_register_authcode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="请输入验证码"
@@ -134,16 +140,17 @@
                 android:background="@null"
                 android:textColorHint="@color/gray3"
                 android:textSize="15sp"/>
-            <TextView
+            <Button
+                android:id="@+id/activity_register_sendcode_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="发送验证码"
-                android:paddingBottom="8dp"
-                android:paddingTop="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:paddingRight="15dp"
                 android:paddingLeft="15dp"
                 android:layout_alignParentRight="true"
-                android:background="@color/green1"
+                android:background="@drawable/selector_login_btn"
                 android:textColor="@color/white"
                 android:layout_centerVertical="true"
                 android:textSize="15sp"
@@ -152,6 +159,7 @@
         <View
             style="@style/Line"/>
         <Button
+            android:id="@+id/activity_register_signin_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="注册"

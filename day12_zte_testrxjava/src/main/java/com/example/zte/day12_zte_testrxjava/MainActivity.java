@@ -100,8 +100,8 @@ public class MainActivity extends AppCompatActivity {
                         return s.contains("a");
                     }
                 })
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+
                 //对数据进行二次处理。
                 .map(new Function<String, String>() {
                     @Override

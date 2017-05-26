@@ -8,22 +8,4 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.zte.day26_zte_selfdefinition_view.MainActivity">
 
-    <com.example.zte.day26_zte_selfdefinition_view.TextViewGroup
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <com.example.zte.day26_zte_selfdefinition_view.TextView
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:text="text1"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="我们也知道了自定义"/>
-        <TextView
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:text="谢谢！"/>
-    </com.example.zte.day26_zte_selfdefinition_view.TextViewGroup>
 </RelativeLayout>

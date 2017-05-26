@@ -10,6 +10,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/day12_zte_testrxjava" />
             <option value="$PROJECT_DIR$/day24_zte_wechat" />
             <option value="$PROJECT_DIR$/day26_zte_selfdefinition_view" />
           </set>
