@@ -74,7 +74,8 @@ public class OkhttpClientSetting {
 
     private void clientSetting() {
         File httpCacheDir = new File(MyApplication.getContext().getCacheDir(), "response");
-        int cacheSize = 10 * 1024 * 1024;// 10 MiB
+        Log.e(ConstantsUtil.TAG, "clientSetting: "+httpCacheDir.getAbsolutePath());
+        int cacheSize = 10 * 1024 * 1024;// 10 MB
         Cache cache = new Cache(httpCacheDir, cacheSize);
         CookieJarImpl cookieJar = new CookieJarImpl(getCookieStore());
         mClient = new OkHttpClient.Builder()
@@ -86,7 +87,7 @@ public class OkhttpClientSetting {
                 .build();
     }
 
-    Interceptor headInterceptor = new Interceptor() {
+    private Interceptor headInterceptor = new Interceptor() {
         @Override
         public Response intercept(Chain chain) throws IOException {
             Request request = chain.request()
@@ -97,13 +98,13 @@ public class OkhttpClientSetting {
         }
     };
 
-    Interceptor netWorkInterceptor = new Interceptor() {
+    private Interceptor netWorkInterceptor = new Interceptor() {
         @Override
         public Response intercept(Chain chain) throws IOException {
             //通过 CacheControl 控制缓存数据
             CacheControl.Builder cacheBuilder = new CacheControl.Builder();
             //如果超过这个时间就会发送网络请求。
-            cacheBuilder.maxAge(1, TimeUnit.HOURS);//这个是控制缓存的最大生命时间
+            cacheBuilder.maxAge(0, TimeUnit.HOURS);//这个是控制缓存的最大生命时间
             //在这个时间之内网络请求的缓存会被使用，如果不设置，缓存就不会被使用
             cacheBuilder.maxStale(1, TimeUnit.HOURS);//这个是控制缓存的过时时间
             CacheControl cacheControl = cacheBuilder.build();
@@ -117,7 +118,7 @@ public class OkhttpClientSetting {
             }
             Response originalResponse = chain.proceed(request);
             if (NetUtil.isNetworkAvailable(MyApplication.getContext())) {
-                int maxAge = 0;//read from cache
+                int maxAge = 60 * 60;//read from cache
                 return originalResponse.newBuilder()
                         .removeHeader("Pragma")
                         .header("Cache-Control", "public ,max-age=" + maxAge)
@@ -126,12 +127,12 @@ public class OkhttpClientSetting {
                 int maxStale = 60 * 60 * 24 * 28;//tolerate 4-weeks stale
                 return originalResponse.newBuilder()
                         .removeHeader("Prama")
-                        .header("Cache-Control", "poublic, only-if-cached, max-stale=" + maxStale)
+                        .header("Cache-Control", "public, only-if-cached, max-stale=" + maxStale)
                         .build();
             }
         }
     };
-    class LoggingInterceptor implements Interceptor {
+    private class LoggingInterceptor implements Interceptor {
         @Override
         public Response intercept(Interceptor.Chain chain) throws IOException {
             //这个chain里面包含了request和response，所以你要什么都可以从这里拿
