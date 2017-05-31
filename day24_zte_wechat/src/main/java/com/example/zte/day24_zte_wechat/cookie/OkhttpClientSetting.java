@@ -121,7 +121,7 @@ public class OkhttpClientSetting {
                 int maxAge = 60 * 60;//read from cache
                 return originalResponse.newBuilder()
                         .removeHeader("Pragma")
-                        .header("Cache-Control", "public ,max-age=" + maxAge)
+                        .header("Cache- ", "public ,max-age=" + maxAge)
                         .build();
             } else {
                 int maxStale = 60 * 60 * 24 * 28;//tolerate 4-weeks stale

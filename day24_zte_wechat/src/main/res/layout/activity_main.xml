@@ -1,13 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:id="@+id/activity_main"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    android:background="@color/gray5"
     tools:context="com.example.zte.day24_zte_wechat.MainActivity">
+    <include layout="@layout/title_bar"/>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/activity_main_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:text="Hello World!" />
-</RelativeLayout>
+    </android.support.v4.view.ViewPager>
+    <View
+        style="@style/Line"
+        />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+            <FrameLayout
+                android:id="@+id/activity_main_first_fl"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+            <FrameLayout
+                android:id="@+id/activity_main_first_f2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+            <FrameLayout
+                android:id="@+id/activity_main_first_f3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+            <FrameLayout
+                android:id="@+id/activity_main_first_f4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/white"
+        android:orientation="vertical">
+        <RadioGroup
+            android:id="@+id/activity_main_radiogroup"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/activity_main_first"
+                android:button="@null"
+                android:layout_width="0dp"
+                android:paddingBottom="5dp"
+                android:clickable="false"
+                android:gravity="center"
+                android:checked="true"
+                android:drawableBottom="@drawable/selector_radiobutton_1"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+            <RadioButton
+                android:id="@+id/activity_main_second"
+                android:button="@null"
+                android:layout_width="0dp"
+                android:paddingBottom="5dp"
+                android:clickable="false"
+                android:drawableBottom="@drawable/selector_radiobutton_2"
+                android:gravity="center"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+            <RadioButton
+                android:id="@+id/activity_main_third"
+                android:button="@null"
+                android:layout_width="0dp"
+                android:clickable="false"
+                android:drawableBottom="@drawable/selector_radiobutton_3"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+            <RadioButton
+                android:id="@+id/activity_main_forth"
+                android:button="@null"
+                android:layout_width="0dp"
+                android:clickable="false"
+                android:drawableBottom="@drawable/selector_radiobutton_4"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+        </RadioGroup>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/activity_main_first_tv"
+                android:layout_width="0dp"
+                android:text="微信"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:layout_height="match_parent"
+                android:textColor="@color/gray0"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/activity_main_second_tv"
+                android:layout_width="0dp"
+                android:text="通讯录"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:layout_height="match_parent"
+                android:textColor="@color/gray0"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/activity_main_third_tv"
+                android:layout_width="0dp"
+                android:text="发现"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:layout_height="match_parent"
+                android:textColor="@color/gray0"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/activity_main_forth_tv"
+                android:layout_width="0dp"
+                android:text="我"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:textColor="@color/gray0"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+    </LinearLayout>
+    </FrameLayout>
+</LinearLayout>

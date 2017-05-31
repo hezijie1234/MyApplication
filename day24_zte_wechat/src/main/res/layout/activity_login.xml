@@ -1,13 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_login"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
     tools:context="com.example.zte.day24_zte_wechat.view.activity.LoginActivity">
+    <include layout="@layout/title_bar"/>
 
-</RelativeLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:paddingTop="15dp"
+            android:paddingBottom="10dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/activity_login_region"
+                android:layout_width="70dp"
+                android:textColor="@color/black"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:text="国家/地区"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/green1"
+                android:textSize="15sp"
+                android:layout_alignParentRight="true"
+                android:text="中国"/>
+        </RelativeLayout>
+        <View
+            style="@style/Line"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+
+            android:paddingBottom="10dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:text="+86"
+                android:textColor="@color/black"
+                android:textSize="15sp"/>
+
+            <EditText
+                android:id="@+id/activity_login_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="你的手机号码"
+                android:textColorHint="@color/gray3"
+                android:textSize="15sp"
+                />
+        </LinearLayout>
+        <View
+            style="@style/Line"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:text="密码"
+                android:textColor="@color/black"
+                android:textSize="15sp"/>
+
+            <EditText
+                android:id="@+id/activity_login_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="填写密码"
+                android:textColorHint="@color/gray3"
+                android:textSize="15sp"
+                />
+        </LinearLayout>
+        <Button
+            android:id="@+id/activity_login_loginbtn"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="登录"
+            android:background="@color/green1"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            android:text="用短信验证码登录"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/blue0"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_alignParentBottom="true"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/blue0"
+                    android:text="登录遇到的问题"/>
+                <!--因为线条在形成的时候经过旋转，所以，如果横向的宽度不够，线条的长度将被限制-->
+                <View
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:background="@drawable/login_line"
+                />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="使用其他方式登录"
+                    android:textColor="@color/blue0"
+                    android:gravity="center"
+                    android:layout_alignParentTop="true"
+                    android:layout_gravity="right"/>
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

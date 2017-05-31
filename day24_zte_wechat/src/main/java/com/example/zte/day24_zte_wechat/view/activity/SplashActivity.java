@@ -6,11 +6,13 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.example.zte.day24_zte_wechat.MainActivity;
 import com.example.zte.day24_zte_wechat.R;
+import com.example.zte.day24_zte_wechat.cookie.OkhttpClientSetting;
 import com.example.zte.day24_zte_wechat.utils.ConstantsUtil;
 import com.example.zte.day24_zte_wechat.utils.SharePreferenceUtil;
 
@@ -48,7 +50,9 @@ public class SplashActivity extends AppCompatActivity {
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.WRITE_SETTINGS
         ).request();
-        if(!TextUtils.isEmpty(SharePreferenceUtil.getInstance(this).getString(ConstantsUtil.TOKEN,""))){
+        //如果cookie缓存存在久直接进入主界面。
+        if(OkhttpClientSetting.getInstance().hasCookie()){
+            Log.e(ConstantsUtil.TAG, "onCreate: 有cookie缓存" );
             mLoginBtn.setVisibility(View.INVISIBLE);
             mRegisterBtn.setVisibility(View.INVISIBLE);
             handler.postDelayed(new Runnable() {
@@ -59,8 +63,25 @@ public class SplashActivity extends AppCompatActivity {
                 }
             },3000);
         }else{
+            Log.e(ConstantsUtil.TAG, "onCreate: 没有cookie缓存" );
+            mLoginBtn.setVisibility(View.VISIBLE);
+            mRegisterBtn.setVisibility(View.VISIBLE);
             setListener();
         }
+        //如果登录成功过，就没有注册按钮
+//        if(!TextUtils.isEmpty(SharePreferenceUtil.getInstance(this).getString(ConstantsUtil.TOKEN,""))){
+//            mLoginBtn.setVisibility(View.INVISIBLE);
+//            mRegisterBtn.setVisibility(View.INVISIBLE);
+//            handler.postDelayed(new Runnable() {
+//                @Override
+//                public void run() {
+//                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
+//                    finish();
+//                }
+//            },3000);
+//        }else{
+//            setListener();
+//        }
 
     }
 

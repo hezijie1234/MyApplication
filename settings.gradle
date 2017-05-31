@@ -1,2 +1,2 @@
-include ':app', ':day24_zte_wechat', ':day26_zte_selfdefinition_view',':day12_zte_testrxjava'
+include ':app', ':day24_zte_wechat', ':day26_zte_selfdefinition_view', ':day12_zte_testrxjava', ':day27_zte_glide_base'
 

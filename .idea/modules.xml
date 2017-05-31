@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/day12_zte_testrxjava/day12_zte_testrxjava.iml" filepath="$PROJECT_DIR$/day12_zte_testrxjava/day12_zte_testrxjava.iml" />
       <module fileurl="file://$PROJECT_DIR$/day24_zte_wechat/day24_zte_wechat.iml" filepath="$PROJECT_DIR$/day24_zte_wechat/day24_zte_wechat.iml" />
       <module fileurl="file://$PROJECT_DIR$/day26_zte_selfdefinition_view/day26_zte_selfdefinition_view.iml" filepath="$PROJECT_DIR$/day26_zte_selfdefinition_view/day26_zte_selfdefinition_view.iml" />
+      <module fileurl="file://$PROJECT_DIR$/day27_zte_glide_base/day27_zte_glide_base.iml" filepath="$PROJECT_DIR$/day27_zte_glide_base/day27_zte_glide_base.iml" />
     </modules>
   </component>
 </project>
