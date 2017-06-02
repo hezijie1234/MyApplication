@@ -2,12 +2,14 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/CallKit/CallKit.iml" filepath="$PROJECT_DIR$/CallKit/CallKit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CallLib/CallLib.iml" filepath="$PROJECT_DIR$/CallLib/CallLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IMKit/IMKit.iml" filepath="$PROJECT_DIR$/IMKit/IMKit.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IMLib/IMLib.iml" filepath="$PROJECT_DIR$/IMLib/IMLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/MyApplication.iml" filepath="$PROJECT_DIR$/MyApplication.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RedPacket/RedPacket.iml" filepath="$PROJECT_DIR$/RedPacket/RedPacket.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/day12_zte_testrxjava/day12_zte_testrxjava.iml" filepath="$PROJECT_DIR$/day12_zte_testrxjava/day12_zte_testrxjava.iml" />
       <module fileurl="file://$PROJECT_DIR$/day24_zte_wechat/day24_zte_wechat.iml" filepath="$PROJECT_DIR$/day24_zte_wechat/day24_zte_wechat.iml" />
-      <module fileurl="file://$PROJECT_DIR$/day26_zte_selfdefinition_view/day26_zte_selfdefinition_view.iml" filepath="$PROJECT_DIR$/day26_zte_selfdefinition_view/day26_zte_selfdefinition_view.iml" />
-      <module fileurl="file://$PROJECT_DIR$/day27_zte_glide_base/day27_zte_glide_base.iml" filepath="$PROJECT_DIR$/day27_zte_glide_base/day27_zte_glide_base.iml" />
     </modules>
   </component>
 </project>

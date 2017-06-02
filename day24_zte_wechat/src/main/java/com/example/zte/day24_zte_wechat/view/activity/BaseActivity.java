@@ -3,6 +3,7 @@ package com.example.zte.day24_zte_wechat.view.activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.pm.PackageInfo;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -90,5 +92,13 @@ public class BaseActivity extends AppCompatActivity {
             titleView.setText(title);
         }
         return titleView;
+    }
+
+    protected ImageView showRightImageView(){
+        ImageView imageView = (ImageView) findViewById(R.id.title_bar_right_image);
+        if(imageView != null){
+            imageView.setVisibility(View.VISIBLE);
+        }
+        return imageView;
     }
 }

@@ -17,6 +17,7 @@ import com.example.zte.day24_zte_wechat.module.wechat.bean.LoginResponse;
 import com.example.zte.day24_zte_wechat.utils.CommonUtils;
 import com.example.zte.day24_zte_wechat.utils.ConstantsUtil;
 import com.example.zte.day24_zte_wechat.utils.RetrofitApi;
+import com.example.zte.day24_zte_wechat.utils.SharePreferenceUtil;
 import com.example.zte.day24_zte_wechat.view.MyApplication;
 import com.google.gson.Gson;
 
@@ -82,6 +83,11 @@ public class LoginActivity extends BaseActivity {
                             public void onNext(LoginResponse loginResponse) {
                                 hideProgressDialog();
                                 if(loginResponse.getCode() == 200){
+                                    String token = loginResponse.getResult().getToken();
+                                    Log.e("111", "onNext: "+token );
+                                    SharePreferenceUtil.getInstance(LoginActivity.this).putString("token",token);
+                                    SharePreferenceUtil.getInstance(LoginActivity.this).putString("id",loginResponse.getResult().getId());
+                                    SharePreferenceUtil.getInstance(LoginActivity.this).putString("phone",mPhoneNum.getText().toString().trim());
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);

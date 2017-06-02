@@ -9,11 +9,13 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/CallKit" />
+            <option value="$PROJECT_DIR$/CallLib" />
+            <option value="$PROJECT_DIR$/IMKit" />
+            <option value="$PROJECT_DIR$/IMLib" />
+            <option value="$PROJECT_DIR$/RedPacket" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/day12_zte_testrxjava" />
             <option value="$PROJECT_DIR$/day24_zte_wechat" />
-            <option value="$PROJECT_DIR$/day26_zte_selfdefinition_view" />
-            <option value="$PROJECT_DIR$/day27_zte_glide_base" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

@@ -30,6 +30,7 @@ import com.example.zte.day24_zte_wechat.module.wechat.bean.VerifyCodeRequest;
 import com.example.zte.day24_zte_wechat.module.wechat.bean.VerifyCodeResponse;
 import com.example.zte.day24_zte_wechat.utils.CommonUtils;
 import com.example.zte.day24_zte_wechat.utils.RetrofitApi;
+import com.example.zte.day24_zte_wechat.utils.SharePreferenceUtil;
 import com.example.zte.day24_zte_wechat.view.MyApplication;
 import com.google.gson.Gson;
 
@@ -257,6 +258,11 @@ public class RegisterActivity extends BaseActivity {
                             public void onNext(LoginResponse loginResponse) {
                                 if(loginResponse.getCode() == 200){
                                     //登录成功
+                                    String token = loginResponse.getResult().getToken();
+                                    Log.e("111", "onNext: "+token );
+                                    SharePreferenceUtil.getInstance(RegisterActivity.this).putString("token",token);
+                                    SharePreferenceUtil.getInstance(RegisterActivity.this).putString("id",loginResponse.getResult().getId());
+                                    SharePreferenceUtil.getInstance(RegisterActivity.this).putString("phone",mPhoneNum.getText().toString().trim());
                                     Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);

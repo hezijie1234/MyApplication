@@ -1,19 +1,42 @@
 package com.example.zte.day24_zte_wechat;
 
+import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import com.example.zte.day24_zte_wechat.utils.CommonUtils;
+import com.example.zte.day24_zte_wechat.utils.SharePreferenceUtil;
+import com.example.zte.day24_zte_wechat.view.MyApplication;
+import com.example.zte.day24_zte_wechat.view.activity.AddFriendActivity;
 import com.example.zte.day24_zte_wechat.view.activity.BaseActivity;
+import com.example.zte.day24_zte_wechat.view.fragment.ContactsFragment;
+import com.example.zte.day24_zte_wechat.view.fragment.DiscoveryFragment;
+import com.example.zte.day24_zte_wechat.view.fragment.MeFragment;
+import com.example.zte.day24_zte_wechat.view.fragment.MessageFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.rong.imlib.RongIMClient;
 
 public class MainActivity extends BaseActivity {
     @BindView(R.id.activity_main_first_fl)
@@ -40,12 +63,80 @@ public class MainActivity extends BaseActivity {
     TextView mThirdTextView;
     @BindView(R.id.activity_main_forth_tv)
     TextView mForthTextView;
+    @BindView(R.id.activity_main_viewpager)
+    ViewPager mViewPager;
+    private List<Fragment> list;
+    private ViewPagerAdapter mViewPagerAdapter;
+    private ImageView mRightImageView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        initData();
         listener();
+        setTextColor();
+        mFirstTextView.setTextColor(getResources().getColor(R.color.green0));
+        Log.e("111", "onCreate: "+SharePreferenceUtil.getInstance(this).getString("token","") );
+        connect(SharePreferenceUtil.getInstance(this).getString("token",""));
+    }
+
+    private void initData() {
+        mRightImageView = showRightImageView();
+        try {
+            PackageManager packageManager = getPackageManager();
+            PackageInfo packageInfo = packageManager.getPackageInfo(
+                    getPackageName(), 0);
+            int labelRes = packageInfo.applicationInfo.labelRes;
+            String appName = getResources().getString(labelRes);
+
+            showTitleView(appName);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        list = new ArrayList<>();
+        list.add(MessageFragment.getInstance());
+        list.add(DiscoveryFragment.getInstance());
+        list.add(ContactsFragment.getInstance());
+        list.add(MeFragment.getInstance());
+        mViewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        mViewPager.setAdapter(mViewPagerAdapter);
+    }
+    private void connect(String token) {
+        Log.e("111", "connect: "+getApplicationInfo().packageName );
+        if(getApplicationInfo().packageName.equals(MyApplication.getCurProcessName(getApplicationContext()))){
+            RongIMClient.connect(token, new RongIMClient.ConnectCallback() {
+
+                /**
+                 * Token 错误。可以从下面两点检查 1.  Token 是否过期，如果过期您需要向 App Server 重新请求一个新的 Token
+                 * 2.  token 对应的 appKey 和工程里设置的 appKey 是否一致
+                 */
+                @Override
+                public void onTokenIncorrect() {
+
+                }
+
+                /**
+                 * 连接融云成功
+                 * @param userid 当前 token 对应的用户 id
+                 */
+                @Override
+                public void onSuccess(String userid) {
+                    Log.e("111", "--onSuccess" + userid);
+
+                }
+
+                /**
+                 * 连接融云失败
+                 * @param errorCode 错误码，可到官网 查看错误码对应的注释
+                 */
+                @Override
+                public void onError(RongIMClient.ErrorCode errorCode) {
+                    Log.e("111", "onError: "+errorCode );
+                }
+            });
+        }
     }
 
     private void listener() {
@@ -55,6 +146,7 @@ public class MainActivity extends BaseActivity {
                 mFirstRadio.setChecked(true);
                 setTextColor();
                 mFirstTextView.setTextColor(getResources().getColor(R.color.green0));
+                mViewPager.setCurrentItem(0);
             }
         });
         mSecondFrame.setOnClickListener(new View.OnClickListener() {
@@ -63,6 +155,7 @@ public class MainActivity extends BaseActivity {
                 mSecondRadio.setChecked(true);
                 setTextColor();
                 mSecondTextView.setTextColor(getResources().getColor(R.color.green0));
+                mViewPager.setCurrentItem(1);
             }
         });
         mThirdFrame.setOnClickListener(new View.OnClickListener() {
@@ -71,6 +164,7 @@ public class MainActivity extends BaseActivity {
                 mThirdRadio.setChecked(true);
                 setTextColor();
                 mThirdTextView.setTextColor(getResources().getColor(R.color.green0));
+                mViewPager.setCurrentItem(2);
             }
         });
         mForthFrame.setOnClickListener(new View.OnClickListener() {
@@ -79,6 +173,47 @@ public class MainActivity extends BaseActivity {
                 mForthRadio.setChecked(true);
                 setTextColor();
                 mForthTextView.setTextColor(getResources().getColor(R.color.green0));
+                mViewPager.setCurrentItem(3);
+            }
+        });
+        final View view = View.inflate(MainActivity.this, R.layout.menu_main, null);
+        final PopupWindow popupWindow = new PopupWindow(view, ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT,true);
+        popupWindow.setOutsideTouchable(true);
+        popupWindow.setBackgroundDrawable(new BitmapDrawable());
+        //给右边的加号按钮设置点击
+        mRightImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popupWindow.showAtLocation(getWindow().getDecorView(), Gravity.TOP | Gravity.RIGHT, CommonUtils.dip2Px(5),CommonUtils.dip2Px(60) + 30);
+                //点击发起群聊
+                view.findViewById(R.id.tvCreateGroup).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+                //点击帮助与反馈
+                view.findViewById(R.id.tvHelpFeedback).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+                //点击添加朋友
+                view.findViewById(R.id.tvAddFriend).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        startActivity(new Intent(MainActivity.this, AddFriendActivity.class));
+                        popupWindow.dismiss();
+                    }
+                });
+                //点击扫一扫
+                view.findViewById(R.id.tvScan).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
             }
         });
     }
@@ -97,12 +232,12 @@ public class MainActivity extends BaseActivity {
 
         @Override
         public Fragment getItem(int position) {
-            return null;
+            return list.get(position);
         }
 
         @Override
         public int getCount() {
-            return 0;
+            return list.size();
         }
     }
 }

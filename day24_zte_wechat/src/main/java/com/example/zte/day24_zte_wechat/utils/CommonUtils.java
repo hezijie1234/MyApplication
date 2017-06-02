@@ -1,5 +1,7 @@
 package com.example.zte.day24_zte_wechat.utils;
 
+import com.example.zte.day24_zte_wechat.view.MyApplication;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -8,7 +10,19 @@ import java.util.regex.Pattern;
  */
 
 public class CommonUtils {
+    /**
+     * dip-->px
+     */
+    public static int dip2Px(int dip) {
+        // px/dip = density;
+        // density = dpi/160
+        // 320*480 density = 1 1px = 1dp
+        // 1280*720 density = 2 2px = 1dp
 
+        float density = MyApplication.getContext().getResources().getDisplayMetrics().density;
+        int px = (int) (dip * density + 0.5f);
+        return px;
+    }
     /**正则表达式：https://juejin.im/post/59144e1ca0bb9f005fca5be7
      * @param num
      * @return判断是否是电话号码
