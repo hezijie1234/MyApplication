@@ -21,7 +21,11 @@ import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import com.example.zte.day24_zte_wechat.module.wechat.bean.UserRelationshipResponse;
 import com.example.zte.day24_zte_wechat.utils.CommonUtils;
+import com.example.zte.day24_zte_wechat.utils.ConstantsUtil;
+import com.example.zte.day24_zte_wechat.utils.NetUtil;
+import com.example.zte.day24_zte_wechat.utils.RetrofitApi;
 import com.example.zte.day24_zte_wechat.utils.SharePreferenceUtil;
 import com.example.zte.day24_zte_wechat.view.MyApplication;
 import com.example.zte.day24_zte_wechat.view.activity.AddFriendActivity;
@@ -37,6 +41,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.rong.imlib.RongIMClient;
+import rx.Observer;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class MainActivity extends BaseActivity {
     @BindView(R.id.activity_main_first_fl)
@@ -74,12 +81,45 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        //登录时同步好友信息到本地
+        getAllUserInfo();
         initData();
         listener();
         setTextColor();
         mFirstTextView.setTextColor(getResources().getColor(R.color.green0));
         Log.e("111", "onCreate: "+SharePreferenceUtil.getInstance(this).getString("token","") );
         connect(SharePreferenceUtil.getInstance(this).getString("token",""));
+    }
+
+    private void getAllUserInfo() {
+        if(!NetUtil.isNetworkAvailable(this)){
+            return;
+        }
+        RetrofitApi retrofitApi = MyApplication.getRetrofit().create(RetrofitApi.class);
+        retrofitApi.getAllUserRelationship()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<UserRelationshipResponse>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(UserRelationshipResponse userRelationshipResponse) {
+                        List<UserRelationshipResponse.ResultEntity> result = userRelationshipResponse.getResult();
+                        if(result.size() > 0){
+                            UserRelationshipResponse.ResultEntity resultEntity = result.get(0);
+                            String displayName = resultEntity.getDisplayName();
+                            Log.e(ConstantsUtil.TAG, "onNext: "+result.size() );
+                        }
+                    }
+                });
     }
 
     private void initData() {

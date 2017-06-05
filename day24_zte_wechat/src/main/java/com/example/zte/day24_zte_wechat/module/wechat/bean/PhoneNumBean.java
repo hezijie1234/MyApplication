@@ -1,12 +1,13 @@
 package com.example.zte.day24_zte_wechat.module.wechat.bean;
 
-/**
- * Created by Administrator on 2017-05-25.
- */
+import java.io.Serializable;
+
+
 
 public class PhoneNumBean {
 
-    public PhoneNumBean(String region,String phone ) {
+
+    public PhoneNumBean(String region, String phone ) {
         this.phone = phone;
         this.region = region;
     }

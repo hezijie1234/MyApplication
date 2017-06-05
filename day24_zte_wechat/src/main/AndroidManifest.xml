@@ -81,7 +81,8 @@
             android:label="@string/title_activity_base"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".view.activity.AddFriendActivity" />
-        <activity android:name=".view.activity.SearchActivity"></activity>
+        <activity android:name=".view.activity.SearchActivity" />
+        <activity android:name=".view.activity.UserInfoActivity"></activity>
     </application>
 
 </manifest>

@@ -10,7 +10,9 @@ import com.example.zte.day24_zte_wechat.cookie.OkhttpClientSetting;
 import com.example.zte.day24_zte_wechat.utils.ConstantsUtil;
 import com.example.zte.day24_zte_wechat.view.activity.LoginActivity;
 
+import io.rong.imlib.OnReceiveMessageListener;
 import io.rong.imlib.RongIMClient;
+import io.rong.imlib.model.Message;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -19,7 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * Created by Administrator on 2017-05-25.
  */
 
-public class MyApplication extends Application {
+public class MyApplication extends Application implements RongIMClient.OnReceiveMessageListener{
     private static Context context;
     public static Retrofit retrofit;
 
@@ -67,5 +69,10 @@ public class MyApplication extends Application {
             }
         }
         return null;
+    }
+
+    @Override
+    public boolean onReceived(Message message, int i) {
+        return false;
     }
 }

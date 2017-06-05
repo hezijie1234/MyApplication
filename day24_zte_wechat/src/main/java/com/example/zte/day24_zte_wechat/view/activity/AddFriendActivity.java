@@ -27,7 +27,7 @@ public class AddFriendActivity extends BaseActivity{
         mLinear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent());
+                startActivity(new Intent(AddFriendActivity.this,SearchActivity.class));
             }
         });
 

@@ -10,6 +10,7 @@
       <module fileurl="file://$PROJECT_DIR$/RedPacket/RedPacket.iml" filepath="$PROJECT_DIR$/RedPacket/RedPacket.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/day24_zte_wechat/day24_zte_wechat.iml" filepath="$PROJECT_DIR$/day24_zte_wechat/day24_zte_wechat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/day24greendao/day24greendao.iml" filepath="$PROJECT_DIR$/day24greendao/day24greendao.iml" />
     </modules>
   </component>
 </project>

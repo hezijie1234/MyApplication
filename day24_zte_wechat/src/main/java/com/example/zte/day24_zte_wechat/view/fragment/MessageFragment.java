@@ -23,7 +23,7 @@ import io.rong.imlib.model.Conversation;
 public class MessageFragment extends BaseFragment {
 
     private static MessageFragment fragment;
-    private List<Conversation> mDataList;
+    private List<Conversation> mDataList = new ArrayList<>();
 
     public static MessageFragment getInstance(){
         if(fragment == null){
@@ -46,7 +46,7 @@ public class MessageFragment extends BaseFragment {
     }
 
     private void initData() {
-        mDataList = new ArrayList<>();
+
         RongIMClient.getInstance().getConversationList(new RongIMClient.ResultCallback<List<Conversation>>() {
             @Override
             public void onSuccess(List<Conversation> conversations) {

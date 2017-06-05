@@ -1,14 +1,18 @@
 package com.example.zte.day24_zte_wechat.utils;
 
+import com.example.zte.day24_zte_wechat.module.wechat.bean.FriSearchResponse;
 import com.example.zte.day24_zte_wechat.module.wechat.bean.IsPhoneNum;
 import com.example.zte.day24_zte_wechat.module.wechat.bean.LoginResponse;
 import com.example.zte.day24_zte_wechat.module.wechat.bean.RegisterResponse;
 import com.example.zte.day24_zte_wechat.module.wechat.bean.SendCodeBean;
+import com.example.zte.day24_zte_wechat.module.wechat.bean.UserRelationshipResponse;
 import com.example.zte.day24_zte_wechat.module.wechat.bean.VerifyCodeResponse;
 
 import okhttp3.RequestBody;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import rx.Observable;
 
 /**
@@ -30,4 +34,11 @@ public interface RetrofitApi {
 
     @POST("user/login")
     Observable<LoginResponse> login(@Body RequestBody body);
+
+    @GET("user/find/{region}/{phone}")
+    Observable<FriSearchResponse> searchFriend(@Path("region")String region,@Path("phone")String phone);
+
+    //获取发生过用户关系的列表
+    @GET("friendship/all")
+    Observable<UserRelationshipResponse> getAllUserRelationship();
 }
