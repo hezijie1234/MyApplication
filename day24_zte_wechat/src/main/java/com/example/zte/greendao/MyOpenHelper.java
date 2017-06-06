@@ -9,7 +9,7 @@ import org.greenrobot.greendao.database.Database;
 /**
  * Created by yangjw on 2017/2/15.
  */
-public class MyOpenHelper extends WechatDaoMaster.OpenHelper {
+public class MyOpenHelper extends WechatDaoMaster.DevOpenHelper {
     private static final String TAG = "androidxx";
 
     public MyOpenHelper(Context context, String name) {

@@ -1,6 +1,8 @@
 package com.example.zte.day24_zte_wechat.utils;
 
 import com.example.zte.day24_zte_wechat.module.wechat.bean.FriSearchResponse;
+import com.example.zte.day24_zte_wechat.module.wechat.bean.GetGroupMemberResponse;
+import com.example.zte.day24_zte_wechat.module.wechat.bean.GetGroupResponse;
 import com.example.zte.day24_zte_wechat.module.wechat.bean.IsPhoneNum;
 import com.example.zte.day24_zte_wechat.module.wechat.bean.LoginResponse;
 import com.example.zte.day24_zte_wechat.module.wechat.bean.RegisterResponse;
@@ -41,4 +43,11 @@ public interface RetrofitApi {
     //获取发生过用户关系的列表
     @GET("friendship/all")
     Observable<UserRelationshipResponse> getAllUserRelationship();
+    //获取当前用户所属群组列表
+    @GET("user/groups")
+    Observable<GetGroupResponse> getGroups();
+
+    //根据群id获取群组成员
+    @GET("group/{groupId}/members")
+    Observable<GetGroupMemberResponse> getGroupMember(@Path("groupId") String groupId);
 }

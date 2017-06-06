@@ -1,16 +1,19 @@
 package com.example.zte.day24_zte_wechat;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ApplicationInfo;
+import android.content.IntentFilter;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -20,11 +23,15 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.zte.day24_zte_wechat.module.wechat.bean.GetGroupMemberResponse;
+import com.example.zte.day24_zte_wechat.module.wechat.bean.GetGroupResponse;
 import com.example.zte.day24_zte_wechat.module.wechat.bean.UserRelationshipResponse;
 import com.example.zte.day24_zte_wechat.utils.CommonUtils;
 import com.example.zte.day24_zte_wechat.utils.ConstantsUtil;
 import com.example.zte.day24_zte_wechat.utils.NetUtil;
+import com.example.zte.day24_zte_wechat.utils.PinyinUtils;
 import com.example.zte.day24_zte_wechat.utils.RetrofitApi;
 import com.example.zte.day24_zte_wechat.utils.SharePreferenceUtil;
 import com.example.zte.day24_zte_wechat.view.MyApplication;
@@ -34,15 +41,27 @@ import com.example.zte.day24_zte_wechat.view.fragment.ContactsFragment;
 import com.example.zte.day24_zte_wechat.view.fragment.DiscoveryFragment;
 import com.example.zte.day24_zte_wechat.view.fragment.MeFragment;
 import com.example.zte.day24_zte_wechat.view.fragment.MessageFragment;
+import com.example.zte.greendao.DBManager;
+import com.example.zte.greendao.Friend;
+import com.example.zte.greendao.FriendDao;
+import com.example.zte.greendao.GroupMember;
+import com.example.zte.greendao.GroupMemberDao;
+import com.example.zte.greendao.Groups;
+import com.example.zte.greendao.GroupsDao;
+import com.example.zte.greendao.WechatDaoSession;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.Future;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.rong.imlib.RongIMClient;
+import rx.Observable;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 public class MainActivity extends BaseActivity {
@@ -75,12 +94,27 @@ public class MainActivity extends BaseActivity {
     private List<Fragment> list;
     private ViewPagerAdapter mViewPagerAdapter;
     private ImageView mRightImageView;
-
+    private boolean mHasFetchedFriends = false;
+    private boolean mHasFetchedGroups = false;
+    private boolean mHasFetchedGroupMembers = false;
+    private LocalBroadcastManager mLocalManager;
+    private BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            hideProgressDialog();
+            Toast.makeText(context, "接收到消息，回话信息加载完毕", Toast.LENGTH_SHORT).show();
+        }
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        //等待全局数据加载完。
+        showProgressDialog();
+        //广播注册
+        mLocalManager = LocalBroadcastManager.getInstance(this);
+        mLocalManager.registerReceiver(receiver,new IntentFilter(ConstantsUtil.FETCH_COMPLETE));
         //登录时同步好友信息到本地
         getAllUserInfo();
         initData();
@@ -95,7 +129,8 @@ public class MainActivity extends BaseActivity {
         if(!NetUtil.isNetworkAvailable(this)){
             return;
         }
-        RetrofitApi retrofitApi = MyApplication.getRetrofit().create(RetrofitApi.class);
+        mHasFetchedFriends = false;
+        final RetrofitApi retrofitApi = MyApplication.getRetrofit().create(RetrofitApi.class);
         retrofitApi.getAllUserRelationship()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -107,19 +142,238 @@ public class MainActivity extends BaseActivity {
 
                     @Override
                     public void onError(Throwable e) {
-
+                        Log.e(ConstantsUtil.TAG, "onError: 获取好友信息失败" );
                     }
 
                     @Override
                     public void onNext(UserRelationshipResponse userRelationshipResponse) {
-                        List<UserRelationshipResponse.ResultEntity> result = userRelationshipResponse.getResult();
-                        if(result.size() > 0){
-                            UserRelationshipResponse.ResultEntity resultEntity = result.get(0);
-                            String displayName = resultEntity.getDisplayName();
-                            Log.e(ConstantsUtil.TAG, "onNext: "+result.size() );
+                        if(userRelationshipResponse != null && userRelationshipResponse.getCode() == 200){
+                            List<UserRelationshipResponse.ResultEntity> result = userRelationshipResponse.getResult();
+                            if(result != null && result.size() > 0){
+                                //每次获取服务器数据后先删除数据库中的类容
+                                deleteFriends();
+                                //然后将最新数据插入数据库。
+                                saveFriend(result);
+                                mHasFetchedFriends = true;
+                                checkFetchComplete();
+                            }
+                        }else{
+                            mHasFetchedFriends = true;
+                            checkFetchComplete();
                         }
                     }
                 });
+
+        //获取群组信息
+        mHasFetchedGroups = false;
+        retrofitApi.getGroups()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<GetGroupResponse>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.e(ConstantsUtil.TAG, "onError: 获取群组信息失败" );
+                    }
+
+                    @Override
+                    public void onNext(GetGroupResponse getGroupResponse) {
+                        if(getGroupResponse != null && getGroupResponse.getCode() == 200){
+                            List<GetGroupResponse.ResultEntity> result = getGroupResponse.getResult();
+                            if(result != null && result.size() > 0){
+                                //清空数据库中的群组信息
+                                deleteGroups();
+                                //将最新群组信息同步到数据库
+                                saveGroups(result);
+                                //同步群组成员信息
+                                fetchGroupMembers(retrofitApi);
+                            }
+                        }
+                        mHasFetchedGroupMembers = true;
+                        mHasFetchedGroups = true;
+                        checkFetchComplete();
+                    }
+                });
+
+    }
+
+    private void fetchGroupMembers(final RetrofitApi retrofitApi) {
+        Observable.from(getGroups())
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io())
+                .subscribe(new Action1<Groups>() {
+                    @Override
+                    public void call(final Groups groups) {
+                        retrofitApi.getGroupMember(groups.getGroupId())
+                                .subscribe(new Observer<GetGroupMemberResponse>() {
+                                    @Override
+                                    public void onCompleted() {
+
+                                    }
+
+                                    @Override
+                                    public void onError(Throwable e) {
+                                        Log.e(ConstantsUtil.TAG, "onError: 群组成员信息加载失败" );
+                                    }
+
+                                    @Override
+                                    public void onNext(GetGroupMemberResponse getGroupMemberResponse) {
+                                        if(null != getGroupMemberResponse && getGroupMemberResponse.getCode() == 200){
+                                            List<GetGroupMemberResponse.ResultEntity> result = getGroupMemberResponse.getResult();
+                                            if(null != result && result.size() > 0){
+                                                deleteGroupMember();
+                                                saveGroupMember(result,groups.getGroupId());
+                                            }
+                                        }
+                                        mHasFetchedGroupMembers = true;
+                                        checkFetchComplete();
+                                    }
+                                });
+                    }
+                });
+
+    }
+
+    private void saveGroupMember(List<GetGroupMemberResponse.ResultEntity> result, String groupId) {
+        DBManager wechat = DBManager.getInstance(this, "wechat");
+        WechatDaoSession readableDBSession = wechat.getReadableDBSession();
+        GroupMemberDao groupMemberDao = readableDBSession.getGroupMemberDao();
+        List<GroupMember> groupMembers = setCreatedToTop(result, groupId);
+        if(null != groupMembers && groupMembers.size() > 0){
+            for (int i = 0; i < groupMembers.size(); i++) {
+                groupMemberDao.insert(groupMembers.get(i));
+            }
+        }
+    }
+    private List<GroupMember> setCreatedToTop(List<GetGroupMemberResponse.ResultEntity> groupMember, String groupId) {
+        List<GroupMember> newList = new ArrayList<>();
+        GroupMember created = null;
+        for (GetGroupMemberResponse.ResultEntity group : groupMember) {
+            String groupName = null;
+            String groupPortraitUri = null;
+            Groups groups = getGroupsById(groupId);
+            if (groups != null) {
+                groupName = groups.getName();
+                groupPortraitUri = groups.getPortraitUri();
+            }
+            GroupMember newMember = new GroupMember(groupId,
+                    group.getUser().getId(),
+                    group.getUser().getNickname(),
+                    group.getUser().getPortraitUri(),
+                    group.getDisplayName(),
+                    PinyinUtils.getPinyin(group.getUser().getNickname()),
+                    PinyinUtils.getPinyin(group.getDisplayName()),
+                    groupName,
+                    PinyinUtils.getPinyin(groupName),
+                    groupPortraitUri);
+            if (group.getRole() == 0) {
+                created = newMember;
+            } else {
+                newList.add(newMember);
+            }
+        }
+        if (created != null) {
+            newList.add(created);
+        }
+        Collections.reverse(newList);
+        return newList;
+    }
+
+    private Groups getGroupsById(String groupId) {
+        DBManager wechat = DBManager.getInstance(this, "wechat");
+        WechatDaoSession readableDBSession = wechat.getReadableDBSession();
+        GroupsDao groupsDao = readableDBSession.getGroupsDao();
+        List<Groups> groupses = groupsDao.queryRaw("groupid=?", groupId);
+        if(null != groupses && groupses.size() > 0){
+            return groupses.get(0);
+        }
+        return null;
+
+    }
+
+    private void deleteGroupMember() {
+        DBManager wechat = DBManager.getInstance(this, "wechat");
+        WechatDaoSession readableDBSession = wechat.getReadableDBSession();
+        GroupMemberDao groupMemberDao = readableDBSession.getGroupMemberDao();
+        groupMemberDao.deleteAll();
+    }
+
+    private List<Groups> getGroups() {
+        DBManager wechat = DBManager.getInstance(this, "wechat");
+        WechatDaoSession readableDBSession = wechat.getReadableDBSession();
+        GroupsDao groupsDao = readableDBSession.getGroupsDao();
+        return groupsDao.loadAll();
+
+    }
+
+    private void saveGroups(List<GetGroupResponse.ResultEntity> list) {
+        DBManager wechat = DBManager.getInstance(this, "wechat");
+        WechatDaoSession readableDBSession = wechat.getReadableDBSession();
+        GroupsDao groupsDao = readableDBSession.getGroupsDao();
+        for(GetGroupResponse.ResultEntity groups : list){
+            String portrait = groups.getGroup().getPortraitUri();
+            //如果群组的头像是空的，则使用默认头像
+            if (TextUtils.isEmpty(portrait)) {
+                portrait = null;
+            }
+            Groups group = new Groups(groups.getGroup().getId(), groups.getGroup().getName(), portrait, String.valueOf(groups.getRole()));
+            groupsDao.insert(group);
+        }
+    }
+
+    private void deleteGroups() {
+        DBManager wechat = DBManager.getInstance(this, "wechat");
+        WechatDaoSession readableDBSession = wechat.getReadableDBSession();
+        GroupsDao groupsDao = readableDBSession.getGroupsDao();
+        groupsDao.deleteAll();
+    }
+
+    private void checkFetchComplete() {
+        if (mHasFetchedFriends && mHasFetchedGroups && mHasFetchedGroupMembers) {
+            sendBroadcast(ConstantsUtil.FETCH_COMPLETE,"");
+            sendBroadcast(ConstantsUtil.UPDATE_FRIEND,"");
+            sendBroadcast(ConstantsUtil.UPDATE_GROUP,"");
+            sendBroadcast(ConstantsUtil.UPDATE_CONVERSATIONS,"");
+        }
+    }
+
+    public void sendBroadcast(String action, String s) {
+        Intent intent = new Intent();
+        intent.setAction(action);
+        intent.putExtra("String", s);
+        mLocalManager.sendBroadcast(intent);
+    }
+
+    private synchronized void saveFriend(List<UserRelationshipResponse.ResultEntity> list) {
+        DBManager wechat = DBManager.getInstance(this, "wechat");
+        WechatDaoSession readableDBSession = wechat.getReadableDBSession();
+        FriendDao friendDao = readableDBSession.getFriendDao();
+        int size = list.size();
+        for(UserRelationshipResponse.ResultEntity entity : list){
+            //等于20表示是好友
+            if(entity.getStatus() == 20){
+                Friend friend = new Friend(entity.getUser().getId(),
+                        entity.getUser().getNickname(),
+                        entity.getUser().getPortraitUri(),
+                        TextUtils.isEmpty(entity.getDisplayName()) ? entity.getUser().getNickname() : entity.getDisplayName(),
+                        null, null, null, null,
+                        PinyinUtils.getPinyin(entity.getUser().getNickname()),
+                        PinyinUtils.getPinyin(TextUtils.isEmpty(entity.getDisplayName()) ? entity.getUser().getNickname() : entity.getDisplayName()));
+                friendDao.insert(friend);
+            }
+        }
+
+    }
+
+    private synchronized void deleteFriends() {
+        DBManager wechat = DBManager.getInstance(this, "wechat");
+        WechatDaoSession readableDBSession = wechat.getReadableDBSession();
+        FriendDao friendDao = readableDBSession.getFriendDao();
+        friendDao.deleteAll();
     }
 
     private void initData() {
@@ -279,5 +533,10 @@ public class MainActivity extends BaseActivity {
         public int getCount() {
             return list.size();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

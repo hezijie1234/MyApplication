@@ -50,9 +50,11 @@ public class MessageFragment extends BaseFragment {
         RongIMClient.getInstance().getConversationList(new RongIMClient.ResultCallback<List<Conversation>>() {
             @Override
             public void onSuccess(List<Conversation> conversations) {
-                mDataList.clear();
-                mDataList.addAll(conversations);
-                filter(mDataList);
+                if(mDataList != null && conversations != null){
+                    mDataList.clear();
+                    mDataList.addAll(conversations);
+                    filter(mDataList);
+                }
             }
 
             @Override

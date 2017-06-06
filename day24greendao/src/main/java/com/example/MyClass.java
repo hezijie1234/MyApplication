@@ -7,7 +7,7 @@ import org.greenrobot.greendao.generator.Schema;
 public class MyClass {
 
     public static void main(String[] args) {
-        Schema schema = new Schema("wechat",1,"com.example.zte.greendao");
+        Schema schema = new Schema("wechat",2,"com.example.zte.greendao");
         Entity userEntity = schema.addEntity("Friend");
         userEntity.addStringProperty("userId");
         userEntity.addStringProperty("name");
@@ -19,6 +19,32 @@ public class MyClass {
         userEntity.addStringProperty("timestamp");
         userEntity.addStringProperty("nameSpelling");
         userEntity.addStringProperty("displayNameSpelling");
+
+        //添加新的表s
+        Entity groups = schema.addEntity("Groups");
+        groups.addStringProperty("groupId");
+        groups.addStringProperty("name");
+        groups.addStringProperty("portraitUri");
+        groups.addStringProperty("displayName");
+        groups.addStringProperty("role");
+        groups.addStringProperty("bulletin");
+        groups.addStringProperty("timestamp");
+        groups.addStringProperty("nameSpelling");
+
+        Entity groupMember = schema.addEntity("GroupMember");
+        groupMember.addStringProperty("userId");
+        groupMember.addStringProperty("name");
+        groupMember.addStringProperty("portraitUri");
+        groupMember.addStringProperty("groupId");
+        groupMember.addStringProperty("displayName");
+        groupMember.addStringProperty("nameSpelling");
+        groupMember.addStringProperty("displayNameSpelling");
+        groupMember.addStringProperty("groupName");
+        groupMember.addStringProperty("groupNameSpelling");
+        groupMember.addStringProperty("groupPortrait");
+
+
+
         //执行自动生成对象的User类
         try {
             /**
