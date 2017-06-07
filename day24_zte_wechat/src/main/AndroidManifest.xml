@@ -66,23 +66,39 @@
             android:process=":ipc" />
         <!-- imlib config end -->
 
-        <activity android:name=".view.activity.SplashActivity">
+        <activity
+            android:name=".view.activity.SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
-        <activity android:name=".view.activity.LoginActivity" />
-        <activity android:name=".view.activity.RegisterActivity" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.RegisterActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".view.activity.BaseActivity"
             android:label="@string/title_activity_base"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".view.activity.AddFriendActivity" />
-        <activity android:name=".view.activity.SearchActivity" />
-        <activity android:name=".view.activity.UserInfoActivity"></activity>
+        <activity
+            android:name=".view.activity.AddFriendActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.SearchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.UserInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".view.activity.SessionActivity" />
+        <activity android:name=".view.activity.PostFriendsActivity"></activity>
     </application>
 
 </manifest>

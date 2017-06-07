@@ -7,6 +7,7 @@
     <color name="green0">#45C01A</color>
     <color name="green1">#45C01A</color>
     <color name="green2">#A3DEA3</color>
+    <color name="green3">#1AAD19</color>
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <color name="gray0">#464646</color>
@@ -17,5 +18,6 @@
     <color name="gray5">#EBEBEB</color>
     <color name="gray7">#999999</color>
     <color name="line">#D2D2D2</color>
-
+    <color name="black0">#000000</color>
+    <color name="black1">#99000000</color>
 </resources>

@@ -1,7 +1,5 @@
 package com.example.zte.day24_zte_wechat.view.fragment;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -76,6 +74,7 @@ public class MessageFragment extends BaseFragment {
                 i--;
                 return;
             }
+
             if(conversation.getConversationType() == Conversation.ConversationType.GROUP){
 
             }

@@ -35,4 +35,15 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="10dp"
         android:visibility="gone"/>
+    <Button
+        android:id="@+id/title_bar_send_btn"
+        android:layout_width="60dp"
+        android:layout_height="40dp"
+        android:text="发送"
+        android:textColor="@color/white"
+        android:background="@drawable/selector_send_btn"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_centerVertical="true"
+        android:visibility="gone"/>
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package com.example.zte.day24_zte_wechat.view.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,6 +18,9 @@ import com.example.zte.day24_zte_wechat.module.wechat.bean.FriSearchResponse;
 import com.example.zte.day24_zte_wechat.utils.ConstantsUtil;
 import com.example.zte.day24_zte_wechat.utils.RetrofitApi;
 import com.example.zte.day24_zte_wechat.view.MyApplication;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,6 +42,20 @@ public class SearchActivity extends BaseActivity {
         setContentView(R.layout.activity_search);
         ButterKnife.bind(this);
         listener();
+        //自动弹出软键盘
+        showKeyBoard();
+    }
+
+    private void showKeyBoard() {
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.showSoftInput(mEdit,0);
+            }
+        },500);
+
     }
 
     private void listener() {
@@ -91,6 +110,7 @@ public class SearchActivity extends BaseActivity {
                                 if(friSearchResponse.getCode() == 200){
                                     FriSearchResponse.ResultEntity result = friSearchResponse.getResult();
                                     UserInfo info = new UserInfo(result.getId(),result.getNickname(), Uri.parse(result.getPortraitUri()));
+                                    //跳转到用户信息界面
                                     Intent intent = new Intent(SearchActivity.this,UserInfoActivity.class);
                                     intent.putExtra("userInfo",info);
                                     startActivity(intent);

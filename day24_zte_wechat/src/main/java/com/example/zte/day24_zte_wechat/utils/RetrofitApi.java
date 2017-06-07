@@ -1,6 +1,7 @@
 package com.example.zte.day24_zte_wechat.utils;
 
 import com.example.zte.day24_zte_wechat.module.wechat.bean.FriSearchResponse;
+import com.example.zte.day24_zte_wechat.module.wechat.bean.FriendInvitationResponse;
 import com.example.zte.day24_zte_wechat.module.wechat.bean.GetGroupMemberResponse;
 import com.example.zte.day24_zte_wechat.module.wechat.bean.GetGroupResponse;
 import com.example.zte.day24_zte_wechat.module.wechat.bean.IsPhoneNum;
@@ -50,4 +51,8 @@ public interface RetrofitApi {
     //根据群id获取群组成员
     @GET("group/{groupId}/members")
     Observable<GetGroupMemberResponse> getGroupMember(@Path("groupId") String groupId);
+
+    //发送好友邀请
+    @POST("friendship/invite")
+    Observable<FriendInvitationResponse> sendFriendInvitation(@Body RequestBody body);
 }
