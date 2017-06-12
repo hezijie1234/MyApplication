@@ -9,6 +9,14 @@ import java.util.List;
  */
 
 public class UserRelationshipResponse {
+    @Override
+    public String toString() {
+        return "UserRelationshipResponse{" +
+                "code=" + code +
+                ", result=" + result +
+                '}';
+    }
+
     /**
      * code : 200
      * result : [{"displayName":"","message":"手机号:18622222222昵称:的用户请求添加你为好友","status":11,"updatedAt":"2016-01-07T06:22:55.000Z","user":{"id":"i3gRfA1ml","nickname":"nihaoa","portraitUri":""}}]
@@ -42,6 +50,17 @@ public class UserRelationshipResponse {
     }
 
     public static class ResultEntity implements Comparable {
+        @Override
+        public String toString() {
+            return "ResultEntity{" +
+                    "displayName='" + displayName + '\'' +
+                    ", message='" + message + '\'' +
+                    ", status=" + status +
+                    ", updatedAt='" + updatedAt + '\'' +
+                    ", mPinyin='" + mPinyin + '\'' +
+                    ", user=" + user +
+                    '}';
+        }
 
         public ResultEntity(String displayName, String message, int status, String updatedAt, UserEntity user) {
             this.displayName = displayName;
@@ -126,6 +145,15 @@ public class UserRelationshipResponse {
             private String id;
             private String nickname;
             private String portraitUri;
+
+            @Override
+            public String toString() {
+                return "UserEntity{" +
+                        "id='" + id + '\'' +
+                        ", nickname='" + nickname + '\'' +
+                        ", portraitUri='" + portraitUri + '\'' +
+                        '}';
+            }
 
             public void setId(String id) {
                 this.id = id;

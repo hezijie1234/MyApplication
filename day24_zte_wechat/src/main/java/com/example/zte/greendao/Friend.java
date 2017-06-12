@@ -7,7 +7,7 @@ import org.greenrobot.greendao.annotation.*;
  * Entity mapped to table "FRIEND".
  */
 @Entity(schema = "wechat")
-public class Friend {
+public class Friend implements Comparable<Friend>{
     private String userId;
     private String name;
     private String portraitUri;
@@ -18,6 +18,22 @@ public class Friend {
     private String timestamp;
     private String nameSpelling;
     private String displayNameSpelling;
+
+    @Override
+    public String toString() {
+        return "Friend{" +
+                "userId='" + userId + '\'' +
+                ", name='" + name + '\'' +
+                ", portraitUri='" + portraitUri + '\'' +
+                ", displayName='" + displayName + '\'' +
+                ", region='" + region + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", status='" + status + '\'' +
+                ", timestamp='" + timestamp + '\'' +
+                ", nameSpelling='" + nameSpelling + '\'' +
+                ", displayNameSpelling='" + displayNameSpelling + '\'' +
+                '}';
+    }
 
     @Generated
     public Friend() {
@@ -117,4 +133,8 @@ public class Friend {
         this.displayNameSpelling = displayNameSpelling;
     }
 
+    @Override
+    public int compareTo(Friend o) {
+        return this.getDisplayName().compareTo(o.getDisplayName());
+    }
 }

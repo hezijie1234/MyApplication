@@ -80,7 +80,7 @@ public class OkhttpClientSetting {
         CookieJarImpl cookieJar = new CookieJarImpl(getCookieStore());
         mClient = new OkHttpClient.Builder()
                 .addInterceptor(headInterceptor)
-                .addInterceptor(netWorkInterceptor)
+//                .addInterceptor(netWorkInterceptor)
                 .addInterceptor(new LoggingInterceptor())
                 .cache(cache)
                 .cookieJar(cookieJar)

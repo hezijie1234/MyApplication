@@ -18,4 +18,7 @@ public class ConstantsUtil {
     public static final String UPDATE_RED_DOT = "update_red_dot";
     public static final String UPDATE_GROUP = "update_group";
     public static final String UPDATE_CONVERSATIONS = "update_conversations";
+    public static final String GROUP_LIST_UPDATE = "group_list_update";
+    public static final String UPDATE_CURRENT_SESSION_NAME = "update_current_session_name";
+    public static final String UPDATE_CURRENT_SESSION = "update_current_session";
 }

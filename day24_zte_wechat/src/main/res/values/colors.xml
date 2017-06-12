@@ -20,4 +20,7 @@
     <color name="line">#D2D2D2</color>
     <color name="black0">#000000</color>
     <color name="black1">#99000000</color>
+    <!--快速索引bar颜色-->
+    <color name="side_bar">#919091</color>
+    <color name="side_bar_pressed">#BFBFBF</color>
 </resources>
