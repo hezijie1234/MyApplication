@@ -13,7 +13,7 @@ import org.greenrobot.greendao.database.DatabaseStatement;
 /** 
  * DAO for table "GROUP_MEMBER".
 */
-public class GroupMemberDao extends AbstractDao<GroupMember, Void> {
+public class GroupMemberDao extends AbstractDao<GroupMember, Long> {
 
     public static final String TABLENAME = "GROUP_MEMBER";
 
@@ -22,16 +22,17 @@ public class GroupMemberDao extends AbstractDao<GroupMember, Void> {
      * Can be used for QueryBuilder and for referencing column names.
      */
     public static class Properties {
-        public final static Property UserId = new Property(0, String.class, "userId", false, "USER_ID");
-        public final static Property Name = new Property(1, String.class, "name", false, "NAME");
-        public final static Property PortraitUri = new Property(2, String.class, "portraitUri", false, "PORTRAIT_URI");
-        public final static Property GroupId = new Property(3, String.class, "groupId", false, "GROUP_ID");
-        public final static Property DisplayName = new Property(4, String.class, "displayName", false, "DISPLAY_NAME");
-        public final static Property NameSpelling = new Property(5, String.class, "nameSpelling", false, "NAME_SPELLING");
-        public final static Property DisplayNameSpelling = new Property(6, String.class, "displayNameSpelling", false, "DISPLAY_NAME_SPELLING");
-        public final static Property GroupName = new Property(7, String.class, "groupName", false, "GROUP_NAME");
-        public final static Property GroupNameSpelling = new Property(8, String.class, "groupNameSpelling", false, "GROUP_NAME_SPELLING");
-        public final static Property GroupPortrait = new Property(9, String.class, "groupPortrait", false, "GROUP_PORTRAIT");
+        public final static Property Id = new Property(0, Long.class, "id", true, "_id");
+        public final static Property UserId = new Property(1, String.class, "userId", false, "USER_ID");
+        public final static Property Name = new Property(2, String.class, "name", false, "NAME");
+        public final static Property PortraitUri = new Property(3, String.class, "portraitUri", false, "PORTRAIT_URI");
+        public final static Property GroupId = new Property(4, String.class, "groupId", false, "GROUP_ID");
+        public final static Property DisplayName = new Property(5, String.class, "displayName", false, "DISPLAY_NAME");
+        public final static Property NameSpelling = new Property(6, String.class, "nameSpelling", false, "NAME_SPELLING");
+        public final static Property DisplayNameSpelling = new Property(7, String.class, "displayNameSpelling", false, "DISPLAY_NAME_SPELLING");
+        public final static Property GroupName = new Property(8, String.class, "groupName", false, "GROUP_NAME");
+        public final static Property GroupNameSpelling = new Property(9, String.class, "groupNameSpelling", false, "GROUP_NAME_SPELLING");
+        public final static Property GroupPortrait = new Property(10, String.class, "groupPortrait", false, "GROUP_PORTRAIT");
     }
 
 
@@ -47,16 +48,17 @@ public class GroupMemberDao extends AbstractDao<GroupMember, Void> {
     public static void createTable(Database db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"GROUP_MEMBER\" (" + //
-                "\"USER_ID\" TEXT," + // 0: userId
-                "\"NAME\" TEXT," + // 1: name
-                "\"PORTRAIT_URI\" TEXT," + // 2: portraitUri
-                "\"GROUP_ID\" TEXT," + // 3: groupId
-                "\"DISPLAY_NAME\" TEXT," + // 4: displayName
-                "\"NAME_SPELLING\" TEXT," + // 5: nameSpelling
-                "\"DISPLAY_NAME_SPELLING\" TEXT," + // 6: displayNameSpelling
-                "\"GROUP_NAME\" TEXT," + // 7: groupName
-                "\"GROUP_NAME_SPELLING\" TEXT," + // 8: groupNameSpelling
-                "\"GROUP_PORTRAIT\" TEXT);"); // 9: groupPortrait
+                "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
+                "\"USER_ID\" TEXT," + // 1: userId
+                "\"NAME\" TEXT," + // 2: name
+                "\"PORTRAIT_URI\" TEXT," + // 3: portraitUri
+                "\"GROUP_ID\" TEXT," + // 4: groupId
+                "\"DISPLAY_NAME\" TEXT," + // 5: displayName
+                "\"NAME_SPELLING\" TEXT," + // 6: nameSpelling
+                "\"DISPLAY_NAME_SPELLING\" TEXT," + // 7: displayNameSpelling
+                "\"GROUP_NAME\" TEXT," + // 8: groupName
+                "\"GROUP_NAME_SPELLING\" TEXT," + // 9: groupNameSpelling
+                "\"GROUP_PORTRAIT\" TEXT);"); // 10: groupPortrait
     }
 
     /** Drops the underlying database table. */
@@ -69,54 +71,59 @@ public class GroupMemberDao extends AbstractDao<GroupMember, Void> {
     protected final void bindValues(DatabaseStatement stmt, GroupMember entity) {
         stmt.clearBindings();
  
+        Long id = entity.getId();
+        if (id != null) {
+            stmt.bindLong(1, id);
+        }
+ 
         String userId = entity.getUserId();
         if (userId != null) {
-            stmt.bindString(1, userId);
+            stmt.bindString(2, userId);
         }
  
         String name = entity.getName();
         if (name != null) {
-            stmt.bindString(2, name);
+            stmt.bindString(3, name);
         }
  
         String portraitUri = entity.getPortraitUri();
         if (portraitUri != null) {
-            stmt.bindString(3, portraitUri);
+            stmt.bindString(4, portraitUri);
         }
  
         String groupId = entity.getGroupId();
         if (groupId != null) {
-            stmt.bindString(4, groupId);
+            stmt.bindString(5, groupId);
         }
  
         String displayName = entity.getDisplayName();
         if (displayName != null) {
-            stmt.bindString(5, displayName);
+            stmt.bindString(6, displayName);
         }
  
         String nameSpelling = entity.getNameSpelling();
         if (nameSpelling != null) {
-            stmt.bindString(6, nameSpelling);
+            stmt.bindString(7, nameSpelling);
         }
  
         String displayNameSpelling = entity.getDisplayNameSpelling();
         if (displayNameSpelling != null) {
-            stmt.bindString(7, displayNameSpelling);
+            stmt.bindString(8, displayNameSpelling);
         }
  
         String groupName = entity.getGroupName();
         if (groupName != null) {
-            stmt.bindString(8, groupName);
+            stmt.bindString(9, groupName);
         }
  
         String groupNameSpelling = entity.getGroupNameSpelling();
         if (groupNameSpelling != null) {
-            stmt.bindString(9, groupNameSpelling);
+            stmt.bindString(10, groupNameSpelling);
         }
  
         String groupPortrait = entity.getGroupPortrait();
         if (groupPortrait != null) {
-            stmt.bindString(10, groupPortrait);
+            stmt.bindString(11, groupPortrait);
         }
     }
 
@@ -124,108 +131,118 @@ public class GroupMemberDao extends AbstractDao<GroupMember, Void> {
     protected final void bindValues(SQLiteStatement stmt, GroupMember entity) {
         stmt.clearBindings();
  
+        Long id = entity.getId();
+        if (id != null) {
+            stmt.bindLong(1, id);
+        }
+ 
         String userId = entity.getUserId();
         if (userId != null) {
-            stmt.bindString(1, userId);
+            stmt.bindString(2, userId);
         }
  
         String name = entity.getName();
         if (name != null) {
-            stmt.bindString(2, name);
+            stmt.bindString(3, name);
         }
  
         String portraitUri = entity.getPortraitUri();
         if (portraitUri != null) {
-            stmt.bindString(3, portraitUri);
+            stmt.bindString(4, portraitUri);
         }
  
         String groupId = entity.getGroupId();
         if (groupId != null) {
-            stmt.bindString(4, groupId);
+            stmt.bindString(5, groupId);
         }
  
         String displayName = entity.getDisplayName();
         if (displayName != null) {
-            stmt.bindString(5, displayName);
+            stmt.bindString(6, displayName);
         }
  
         String nameSpelling = entity.getNameSpelling();
         if (nameSpelling != null) {
-            stmt.bindString(6, nameSpelling);
+            stmt.bindString(7, nameSpelling);
         }
  
         String displayNameSpelling = entity.getDisplayNameSpelling();
         if (displayNameSpelling != null) {
-            stmt.bindString(7, displayNameSpelling);
+            stmt.bindString(8, displayNameSpelling);
         }
  
         String groupName = entity.getGroupName();
         if (groupName != null) {
-            stmt.bindString(8, groupName);
+            stmt.bindString(9, groupName);
         }
  
         String groupNameSpelling = entity.getGroupNameSpelling();
         if (groupNameSpelling != null) {
-            stmt.bindString(9, groupNameSpelling);
+            stmt.bindString(10, groupNameSpelling);
         }
  
         String groupPortrait = entity.getGroupPortrait();
         if (groupPortrait != null) {
-            stmt.bindString(10, groupPortrait);
+            stmt.bindString(11, groupPortrait);
         }
     }
 
     @Override
-    public Void readKey(Cursor cursor, int offset) {
-        return null;
+    public Long readKey(Cursor cursor, int offset) {
+        return cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0);
     }    
 
     @Override
     public GroupMember readEntity(Cursor cursor, int offset) {
         GroupMember entity = new GroupMember( //
-            cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0), // userId
-            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // name
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // portraitUri
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // groupId
-            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // displayName
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // nameSpelling
-            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // displayNameSpelling
-            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // groupName
-            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // groupNameSpelling
-            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9) // groupPortrait
+            cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // userId
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // name
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // portraitUri
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // groupId
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // displayName
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // nameSpelling
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // displayNameSpelling
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // groupName
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // groupNameSpelling
+            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10) // groupPortrait
         );
         return entity;
     }
      
     @Override
     public void readEntity(Cursor cursor, GroupMember entity, int offset) {
-        entity.setUserId(cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0));
-        entity.setName(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
-        entity.setPortraitUri(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setGroupId(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
-        entity.setDisplayName(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
-        entity.setNameSpelling(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
-        entity.setDisplayNameSpelling(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
-        entity.setGroupName(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
-        entity.setGroupNameSpelling(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
-        entity.setGroupPortrait(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
+        entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
+        entity.setUserId(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setName(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setPortraitUri(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setGroupId(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
+        entity.setDisplayName(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setNameSpelling(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setDisplayNameSpelling(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
+        entity.setGroupName(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setGroupNameSpelling(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
+        entity.setGroupPortrait(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
      }
     
     @Override
-    protected final Void updateKeyAfterInsert(GroupMember entity, long rowId) {
-        // Unsupported or missing PK type
-        return null;
+    protected final Long updateKeyAfterInsert(GroupMember entity, long rowId) {
+        entity.setId(rowId);
+        return rowId;
     }
     
     @Override
-    public Void getKey(GroupMember entity) {
-        return null;
+    public Long getKey(GroupMember entity) {
+        if(entity != null) {
+            return entity.getId();
+        } else {
+            return null;
+        }
     }
 
     @Override
     public boolean hasKey(GroupMember entity) {
-        // TODO
-        return false;
+        return entity.getId() != null;
     }
 
     @Override

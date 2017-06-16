@@ -21,4 +21,5 @@ public class ConstantsUtil {
     public static final String GROUP_LIST_UPDATE = "group_list_update";
     public static final String UPDATE_CURRENT_SESSION_NAME = "update_current_session_name";
     public static final String UPDATE_CURRENT_SESSION = "update_current_session";
+
 }

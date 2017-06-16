@@ -1,2 +1,2 @@
-include ':app', ':day24_zte_wechat', ':IMLib', ':CallLib', ':IMKit', ':CallKit', ':RedPacket', ':day24greendao'
+include ':app', ':day24_zte_wechat', ':IMLib', ':CallLib', ':IMKit', ':CallKit', ':RedPacket', ':day24greendao',':PullRefresh_library'
 

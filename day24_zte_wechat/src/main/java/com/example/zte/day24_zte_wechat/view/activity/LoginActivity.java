@@ -63,7 +63,8 @@ public class LoginActivity extends BaseActivity {
                 Retrofit retrofit = MyApplication.getRetrofit();
                 RetrofitApi retrofitApi = retrofit.create(RetrofitApi.class);
                 Gson gson = new Gson();
-                String loginStr = gson.toJson(new LoginRequest("86", mPhoneNum.getText().toString(), mPassword.getText().toString()));
+//                String loginStr = gson.toJson(new LoginRequest("86", mPhoneNum.getText().toString(), mPassword.getText().toString()));
+                String loginStr = gson.toJson(new LoginRequest("86", "13164101894","hzj1710276127"));
                 RequestBody body = RequestBody.create(MediaType.parse("application/json;charset=utf-8"),loginStr);
                 retrofitApi.login(body)
                         .subscribeOn(Schedulers.io())

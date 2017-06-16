@@ -23,4 +23,14 @@
     <!--快速索引bar颜色-->
     <color name="side_bar">#919091</color>
     <color name="side_bar_pressed">#BFBFBF</color>
+
+    <color name="red0">#ff0000</color>
+    <color name="red1">#D84E43</color>
+    <color name="red2">#F08B88</color>
+    <color name="red3">#FFFAF5</color>
+    <color name="red4">#823026</color>
+    <color name="red5">#FA6F5F</color>
+    <color name="red6">#D54A47</color>
+    <color name="red7">#E64340</color>
+    <color name="red8">#FF3E3E</color>
 </resources>

@@ -24,6 +24,7 @@ public class BaseFragment extends Fragment {
 
     private Dialog progressDialog;
     protected View view;
+    private boolean isFirstResume = true;
 
     private void initDialog(){
         progressDialog = createDialog(getActivity(),"");
@@ -47,6 +48,37 @@ public class BaseFragment extends Fragment {
             progressDialog.setCanceledOnTouchOutside(!isModel);
             progressDialog.show();
         }
+    }
+    private boolean isFirst = true;
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(isFirstResume){
+            isFirstResume = false;
+            return;
+        }
+        //如果不是第一次fragment可见，那说明前面，加载过数据，就不用再次加载数据了。
+        if(getUserVisibleHint()){
+            setUserData(false);
+        }
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if(isVisibleToUser){
+            if(isFirst){
+                isFirst = false;
+                setUserData(true);
+            }else {
+                setUserData(false);
+            }
+        }
+    }
+
+    protected void setUserData(boolean b) {
+
     }
 
     public void showProgressDialog(){

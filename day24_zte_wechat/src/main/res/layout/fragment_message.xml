@@ -4,8 +4,10 @@
     android:layout_height="match_parent"
     tools:context="com.example.zte.day24_zte_wechat.view.fragment.MessageFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="聊天界面"/>
+    <ListView
+        android:id="@+id/fragment_message_lv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@color/line"
+        android:dividerHeight="0.5dp"/>
 </FrameLayout>

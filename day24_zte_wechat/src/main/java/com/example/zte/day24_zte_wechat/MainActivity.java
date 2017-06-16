@@ -119,6 +119,7 @@ public class MainActivity extends BaseActivity {
         setTextColor();
         mFirstTextView.setTextColor(getResources().getColor(R.color.green0));
         Log.e("111", "onCreate: "+SharePreferenceUtil.getInstance(this).getString("token","") );
+        //连接融云服务器，并且传递
         connect(SharePreferenceUtil.getInstance(this).getString("token",""));
     }
 

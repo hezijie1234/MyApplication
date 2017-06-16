@@ -3,6 +3,7 @@ package com.example.zte.greendao;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.util.Log;
@@ -24,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import io.rong.imlib.model.UserInfo;
 import rx.Observable;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
@@ -136,14 +138,12 @@ public class DBManager {
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.e(ConstantsUtil.TAG, "onError: 获取好友信息失败" );
                     }
 
                     @Override
                     public void onNext(UserRelationshipResponse userRelationshipResponse) {
                         if(userRelationshipResponse != null && userRelationshipResponse.getCode() == 200){
                             List<UserRelationshipResponse.ResultEntity> result = userRelationshipResponse.getResult();
-                            Log.e(ConstantsUtil.TAG, "从服务器获取数据 "+result.get(0).toString() );
                             if(result != null && result.size() > 0){
                                 //每次获取服务器数据后先删除数据库中的类容
                                 deleteFriends();
@@ -196,6 +196,16 @@ public class DBManager {
                         checkFetchComplete();
                     }
                 });
+    }
+
+    /**根据群id获取群成员
+     * @param groupId
+     * @return
+     */
+    public synchronized List<GroupMember> getGroupMemberById(String groupId){
+        GroupMemberDao groupMemberDao = getGroupMemberDao();
+        QueryBuilder<GroupMember> builder = groupMemberDao.queryBuilder();
+        return builder.where(GroupMemberDao.Properties.GroupId.eq(groupId)).list();
     }
 
     public void getGroupMember(final String groupId){
@@ -332,7 +342,14 @@ public class DBManager {
 
     public synchronized void deleteGroupById(String groupId){
         GroupsDao groupDao = getGroupDao();
-        groupDao.delete(new Groups(groupId));
+        QueryBuilder<Groups> builder = groupDao.queryBuilder();
+        List<Groups> list = builder.where(GroupsDao.Properties.GroupId.eq(groupId)).list();
+        if(list != null && list.size() > 0){
+            for (int i = 0; i < list.size(); i++) {
+                groupDao.delete(list.get(i));
+
+            }
+        }
     }
 
     public synchronized void saveGroupMember(List<GetGroupMemberResponse.ResultEntity> result, String groupId) {
@@ -382,7 +399,8 @@ public class DBManager {
     public synchronized Groups getGroupsById(String groupId) {
         WechatDaoSession readableDBSession = getReadableDBSession();
         GroupsDao groupsDao = readableDBSession.getGroupsDao();
-        List<Groups> groupses = groupsDao.queryRaw("groupid=?", groupId);
+        QueryBuilder<Groups> builder = groupsDao.queryBuilder();
+        List<Groups> groupses = builder.where(GroupsDao.Properties.GroupId.eq(groupId)).list();
         if(null != groupses && groupses.size() > 0){
             return groupses.get(0);
         }
@@ -424,6 +442,7 @@ public class DBManager {
 
     public void checkFetchComplete() {
         if (mHasFetchedFriends && mHasFetchedGroups && mHasFetchedGroupMembers) {
+            Log.e(ConstantsUtil.TAG, "checkFetchComplete: 发送添加朋友广播" );
             sendBroadcast(ConstantsUtil.FETCH_COMPLETE,"");
             sendBroadcast(ConstantsUtil.UPDATE_FRIEND,"");
             sendBroadcast(ConstantsUtil.UPDATE_GROUP,"");
@@ -483,4 +502,18 @@ public class DBManager {
         return friendDao.loadAll();
     }
 
+    public synchronized UserInfo getUserInfo(String targetId) {
+        if(targetId == null){
+            return null;
+        }
+        Friend friendById = getFriendById(targetId);
+        if(friendById != null){
+            String name = friendById.getName();
+            if(!TextUtils.isEmpty(friendById.getDisplayName())){
+                name = friendById.getDisplayName();
+            }
+            return new UserInfo(friendById.getUserId(),name, Uri.parse(friendById.getPortraitUri()));
+        }
+        return null;
+    }
 }

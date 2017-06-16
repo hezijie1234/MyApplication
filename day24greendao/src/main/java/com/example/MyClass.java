@@ -7,8 +7,9 @@ import org.greenrobot.greendao.generator.Schema;
 public class MyClass {
 
     public static void main(String[] args) {
-        Schema schema = new Schema("wechat",2,"com.example.zte.greendao");
+        Schema schema = new Schema("wechat",3,"com.example.zte.greendao");
         Entity userEntity = schema.addEntity("Friend");
+        userEntity.addIdProperty().primaryKey().autoincrement();
         userEntity.addStringProperty("userId");
         userEntity.addStringProperty("name");
         userEntity.addStringProperty("portraitUri");
@@ -22,6 +23,7 @@ public class MyClass {
 
         //添加新的表s
         Entity groups = schema.addEntity("Groups");
+        groups.addIdProperty().primaryKey().autoincrement();
         groups.addStringProperty("groupId");
         groups.addStringProperty("name");
         groups.addStringProperty("portraitUri");
@@ -32,6 +34,7 @@ public class MyClass {
         groups.addStringProperty("nameSpelling");
 
         Entity groupMember = schema.addEntity("GroupMember");
+        groupMember.addIdProperty().primaryKey().autoincrement();
         groupMember.addStringProperty("userId");
         groupMember.addStringProperty("name");
         groupMember.addStringProperty("portraitUri");

@@ -8,6 +8,9 @@ import org.greenrobot.greendao.annotation.*;
  */
 @Entity(schema = "wechat")
 public class Friend implements Comparable<Friend>{
+
+    @Id(autoincrement = true)
+    private Long id;
     private String userId;
     private String name;
     private String portraitUri;
@@ -19,27 +22,29 @@ public class Friend implements Comparable<Friend>{
     private String nameSpelling;
     private String displayNameSpelling;
 
-    @Override
-    public String toString() {
-        return "Friend{" +
-                "userId='" + userId + '\'' +
-                ", name='" + name + '\'' +
-                ", portraitUri='" + portraitUri + '\'' +
-                ", displayName='" + displayName + '\'' +
-                ", region='" + region + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", status='" + status + '\'' +
-                ", timestamp='" + timestamp + '\'' +
-                ", nameSpelling='" + nameSpelling + '\'' +
-                ", displayNameSpelling='" + displayNameSpelling + '\'' +
-                '}';
-    }
-
     @Generated
     public Friend() {
     }
 
+    public Friend(Long id) {
+        this.id = id;
+    }
+
     @Generated
+    public Friend(Long id, String userId, String name, String portraitUri, String displayName, String region, String phoneNumber, String status, String timestamp, String nameSpelling, String displayNameSpelling) {
+        this.id = id;
+        this.userId = userId;
+        this.name = name;
+        this.portraitUri = portraitUri;
+        this.displayName = displayName;
+        this.region = region;
+        this.phoneNumber = phoneNumber;
+        this.status = status;
+        this.timestamp = timestamp;
+        this.nameSpelling = nameSpelling;
+        this.displayNameSpelling = displayNameSpelling;
+    }
+
     public Friend(String userId, String name, String portraitUri, String displayName, String region, String phoneNumber, String status, String timestamp, String nameSpelling, String displayNameSpelling) {
         this.userId = userId;
         this.name = name;
@@ -51,6 +56,14 @@ public class Friend implements Comparable<Friend>{
         this.timestamp = timestamp;
         this.nameSpelling = nameSpelling;
         this.displayNameSpelling = displayNameSpelling;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUserId() {

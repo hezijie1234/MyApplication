@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
+import android.widget.ImageView;
 
 import com.example.zte.day24_zte_wechat.cookie.OkhttpClientSetting;
 import com.example.zte.day24_zte_wechat.module.wechat.bean.ContactNotificationData;
@@ -17,6 +18,9 @@ import com.example.zte.day24_zte_wechat.view.activity.LoginActivity;
 import com.example.zte.greendao.DBManager;
 import com.example.zte.greendao.Friend;
 import com.google.gson.Gson;
+import com.lqr.emoji.IImageLoader;
+import com.lqr.emoji.LQREmotionKit;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -31,6 +35,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static android.R.attr.path;
 import static com.example.zte.day24_zte_wechat.utils.ConstantsUtil.UPDATE_CONVERSATIONS;
 import static com.example.zte.day24_zte_wechat.utils.ConstantsUtil.UPDATE_CURRENT_SESSION;
 import static com.example.zte.day24_zte_wechat.utils.ConstantsUtil.UPDATE_CURRENT_SESSION_NAME;
@@ -65,6 +70,8 @@ public class MyApplication extends Application implements RongIMClient.OnReceive
                 "io.rong.push".equals(getCurProcessName(getApplicationContext()))) {
             RongIMClient.init(this);
         }
+        //监听接收到的消息
+        RongIMClient.setOnReceiveMessageListener(this);
         context = getApplicationContext();
         retrofit = new Retrofit.Builder()
                 .baseUrl(ConstantsUtil.BASE_URL)
@@ -72,6 +79,14 @@ public class MyApplication extends Application implements RongIMClient.OnReceive
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .client(OkhttpClientSetting.getInstance().getmClient())
                 .build();
+
+        //初始化表情控件。
+        LQREmotionKit.init(this, new IImageLoader() {
+            @Override
+            public void displayImage(Context context, String path, ImageView imageView) {
+                Picasso.with(context).load(path).centerCrop().into(imageView);
+            }
+        });
     }
 
     public static String getCurProcessName(Context context) {
@@ -93,6 +108,7 @@ public class MyApplication extends Application implements RongIMClient.OnReceive
 
     @Override
     public boolean onReceived(Message message, int i) {
+        Log.e("he", "onReceived:有新消息收到了 " );
         MessageContent content = message.getContent();
         if(content instanceof ContactNotificationMessage){
             ContactNotificationMessage contactNotificationMessage = (ContactNotificationMessage) content;

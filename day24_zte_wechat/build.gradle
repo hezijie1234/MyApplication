@@ -16,15 +16,55 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
-    sourceSets {
-        main {
-            jniLibs.srcDirs = ['libs']
-        }
-    }
+
+//    //签名,
+//    signingConfigs {
+//        debugConfig {
+//            storeFile file("../day24store")      //签名文件
+//            storePassword "123456"
+//            keyAlias "day24"
+//            keyPassword "123456"  //签名密码
+//        }
+//        release{
+//            storeFile file("../day24store")      //签名文件
+//            storePassword "123456"
+//            keyAlias "day24"
+//            keyPassword "123456"  //签名密码
+//        }
+//    }
+    //这些内容需要写在signingconfig后面，否则会报错
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            // 自定义输出配置
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    def outputFile = output.outputFile
+                    if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                        // 输出apk名称为wooyun_v1.0_wandoujia.apk
+                        def fileName = "wooyun_v${defaultConfig.versionName}_${variant.productFlavors[0].name}.apk"
+                        output.outputFile = new File(outputFile.parent, fileName)
+                    }
+                }
+            }
+        }
+    }
+
+    productFlavors {
+        kuan {}
+        xiaomi {}
+        qh360 {}
+        baidu {}
+        wandoujia {}
+    }
+
+    productFlavors.all {
+        flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+    }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
         }
     }
 }
@@ -53,4 +93,8 @@ dependencies {
     compile 'org.greenrobot:greendao:3.1.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.kyleduo.switchbutton:library:1.4.4'
+    compile files('libs/joda-time-2.5-sources.jar')
+    compile files('libs/joda-time-2.5.jar')
+    compile project(':PullRefresh_library')
+    compile 'com.lqr.emoji:library:1.0.2'
 }

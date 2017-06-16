@@ -13,7 +13,7 @@ import org.greenrobot.greendao.database.DatabaseStatement;
 /** 
  * DAO for table "FRIEND".
 */
-public class FriendDao extends AbstractDao<Friend, Void> {
+public class FriendDao extends AbstractDao<Friend, Long> {
 
     public static final String TABLENAME = "FRIEND";
 
@@ -22,16 +22,17 @@ public class FriendDao extends AbstractDao<Friend, Void> {
      * Can be used for QueryBuilder and for referencing column names.
      */
     public static class Properties {
-        public final static Property UserId = new Property(0, String.class, "userId", false, "USER_ID");
-        public final static Property Name = new Property(1, String.class, "name", false, "NAME");
-        public final static Property PortraitUri = new Property(2, String.class, "portraitUri", false, "PORTRAIT_URI");
-        public final static Property DisplayName = new Property(3, String.class, "displayName", false, "DISPLAY_NAME");
-        public final static Property Region = new Property(4, String.class, "region", false, "REGION");
-        public final static Property PhoneNumber = new Property(5, String.class, "phoneNumber", false, "PHONE_NUMBER");
-        public final static Property Status = new Property(6, String.class, "status", false, "STATUS");
-        public final static Property Timestamp = new Property(7, String.class, "timestamp", false, "TIMESTAMP");
-        public final static Property NameSpelling = new Property(8, String.class, "nameSpelling", false, "NAME_SPELLING");
-        public final static Property DisplayNameSpelling = new Property(9, String.class, "displayNameSpelling", false, "DISPLAY_NAME_SPELLING");
+        public final static Property Id = new Property(0, Long.class, "id", true, "_id");
+        public final static Property UserId = new Property(1, String.class, "userId", false, "USER_ID");
+        public final static Property Name = new Property(2, String.class, "name", false, "NAME");
+        public final static Property PortraitUri = new Property(3, String.class, "portraitUri", false, "PORTRAIT_URI");
+        public final static Property DisplayName = new Property(4, String.class, "displayName", false, "DISPLAY_NAME");
+        public final static Property Region = new Property(5, String.class, "region", false, "REGION");
+        public final static Property PhoneNumber = new Property(6, String.class, "phoneNumber", false, "PHONE_NUMBER");
+        public final static Property Status = new Property(7, String.class, "status", false, "STATUS");
+        public final static Property Timestamp = new Property(8, String.class, "timestamp", false, "TIMESTAMP");
+        public final static Property NameSpelling = new Property(9, String.class, "nameSpelling", false, "NAME_SPELLING");
+        public final static Property DisplayNameSpelling = new Property(10, String.class, "displayNameSpelling", false, "DISPLAY_NAME_SPELLING");
     }
 
 
@@ -47,16 +48,17 @@ public class FriendDao extends AbstractDao<Friend, Void> {
     public static void createTable(Database db, boolean ifNotExists) {
         String constraint = ifNotExists? "IF NOT EXISTS ": "";
         db.execSQL("CREATE TABLE " + constraint + "\"FRIEND\" (" + //
-                "\"USER_ID\" TEXT," + // 0: userId
-                "\"NAME\" TEXT," + // 1: name
-                "\"PORTRAIT_URI\" TEXT," + // 2: portraitUri
-                "\"DISPLAY_NAME\" TEXT," + // 3: displayName
-                "\"REGION\" TEXT," + // 4: region
-                "\"PHONE_NUMBER\" TEXT," + // 5: phoneNumber
-                "\"STATUS\" TEXT," + // 6: status
-                "\"TIMESTAMP\" TEXT," + // 7: timestamp
-                "\"NAME_SPELLING\" TEXT," + // 8: nameSpelling
-                "\"DISPLAY_NAME_SPELLING\" TEXT);"); // 9: displayNameSpelling
+                "\"_id\" INTEGER PRIMARY KEY AUTOINCREMENT ," + // 0: id
+                "\"USER_ID\" TEXT," + // 1: userId
+                "\"NAME\" TEXT," + // 2: name
+                "\"PORTRAIT_URI\" TEXT," + // 3: portraitUri
+                "\"DISPLAY_NAME\" TEXT," + // 4: displayName
+                "\"REGION\" TEXT," + // 5: region
+                "\"PHONE_NUMBER\" TEXT," + // 6: phoneNumber
+                "\"STATUS\" TEXT," + // 7: status
+                "\"TIMESTAMP\" TEXT," + // 8: timestamp
+                "\"NAME_SPELLING\" TEXT," + // 9: nameSpelling
+                "\"DISPLAY_NAME_SPELLING\" TEXT);"); // 10: displayNameSpelling
     }
 
     /** Drops the underlying database table. */
@@ -69,54 +71,59 @@ public class FriendDao extends AbstractDao<Friend, Void> {
     protected final void bindValues(DatabaseStatement stmt, Friend entity) {
         stmt.clearBindings();
  
+        Long id = entity.getId();
+        if (id != null) {
+            stmt.bindLong(1, id);
+        }
+ 
         String userId = entity.getUserId();
         if (userId != null) {
-            stmt.bindString(1, userId);
+            stmt.bindString(2, userId);
         }
  
         String name = entity.getName();
         if (name != null) {
-            stmt.bindString(2, name);
+            stmt.bindString(3, name);
         }
  
         String portraitUri = entity.getPortraitUri();
         if (portraitUri != null) {
-            stmt.bindString(3, portraitUri);
+            stmt.bindString(4, portraitUri);
         }
  
         String displayName = entity.getDisplayName();
         if (displayName != null) {
-            stmt.bindString(4, displayName);
+            stmt.bindString(5, displayName);
         }
  
         String region = entity.getRegion();
         if (region != null) {
-            stmt.bindString(5, region);
+            stmt.bindString(6, region);
         }
  
         String phoneNumber = entity.getPhoneNumber();
         if (phoneNumber != null) {
-            stmt.bindString(6, phoneNumber);
+            stmt.bindString(7, phoneNumber);
         }
  
         String status = entity.getStatus();
         if (status != null) {
-            stmt.bindString(7, status);
+            stmt.bindString(8, status);
         }
  
         String timestamp = entity.getTimestamp();
         if (timestamp != null) {
-            stmt.bindString(8, timestamp);
+            stmt.bindString(9, timestamp);
         }
  
         String nameSpelling = entity.getNameSpelling();
         if (nameSpelling != null) {
-            stmt.bindString(9, nameSpelling);
+            stmt.bindString(10, nameSpelling);
         }
  
         String displayNameSpelling = entity.getDisplayNameSpelling();
         if (displayNameSpelling != null) {
-            stmt.bindString(10, displayNameSpelling);
+            stmt.bindString(11, displayNameSpelling);
         }
     }
 
@@ -124,108 +131,118 @@ public class FriendDao extends AbstractDao<Friend, Void> {
     protected final void bindValues(SQLiteStatement stmt, Friend entity) {
         stmt.clearBindings();
  
+        Long id = entity.getId();
+        if (id != null) {
+            stmt.bindLong(1, id);
+        }
+ 
         String userId = entity.getUserId();
         if (userId != null) {
-            stmt.bindString(1, userId);
+            stmt.bindString(2, userId);
         }
  
         String name = entity.getName();
         if (name != null) {
-            stmt.bindString(2, name);
+            stmt.bindString(3, name);
         }
  
         String portraitUri = entity.getPortraitUri();
         if (portraitUri != null) {
-            stmt.bindString(3, portraitUri);
+            stmt.bindString(4, portraitUri);
         }
  
         String displayName = entity.getDisplayName();
         if (displayName != null) {
-            stmt.bindString(4, displayName);
+            stmt.bindString(5, displayName);
         }
  
         String region = entity.getRegion();
         if (region != null) {
-            stmt.bindString(5, region);
+            stmt.bindString(6, region);
         }
  
         String phoneNumber = entity.getPhoneNumber();
         if (phoneNumber != null) {
-            stmt.bindString(6, phoneNumber);
+            stmt.bindString(7, phoneNumber);
         }
  
         String status = entity.getStatus();
         if (status != null) {
-            stmt.bindString(7, status);
+            stmt.bindString(8, status);
         }
  
         String timestamp = entity.getTimestamp();
         if (timestamp != null) {
-            stmt.bindString(8, timestamp);
+            stmt.bindString(9, timestamp);
         }
  
         String nameSpelling = entity.getNameSpelling();
         if (nameSpelling != null) {
-            stmt.bindString(9, nameSpelling);
+            stmt.bindString(10, nameSpelling);
         }
  
         String displayNameSpelling = entity.getDisplayNameSpelling();
         if (displayNameSpelling != null) {
-            stmt.bindString(10, displayNameSpelling);
+            stmt.bindString(11, displayNameSpelling);
         }
     }
 
     @Override
-    public Void readKey(Cursor cursor, int offset) {
-        return null;
+    public Long readKey(Cursor cursor, int offset) {
+        return cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0);
     }    
 
     @Override
     public Friend readEntity(Cursor cursor, int offset) {
         Friend entity = new Friend( //
-            cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0), // userId
-            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // name
-            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // portraitUri
-            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // displayName
-            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // region
-            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // phoneNumber
-            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // status
-            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // timestamp
-            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // nameSpelling
-            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9) // displayNameSpelling
+            cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0), // id
+            cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1), // userId
+            cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2), // name
+            cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3), // portraitUri
+            cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4), // displayName
+            cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5), // region
+            cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6), // phoneNumber
+            cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7), // status
+            cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8), // timestamp
+            cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // nameSpelling
+            cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10) // displayNameSpelling
         );
         return entity;
     }
      
     @Override
     public void readEntity(Cursor cursor, Friend entity, int offset) {
-        entity.setUserId(cursor.isNull(offset + 0) ? null : cursor.getString(offset + 0));
-        entity.setName(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
-        entity.setPortraitUri(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
-        entity.setDisplayName(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
-        entity.setRegion(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
-        entity.setPhoneNumber(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
-        entity.setStatus(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
-        entity.setTimestamp(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
-        entity.setNameSpelling(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
-        entity.setDisplayNameSpelling(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
+        entity.setId(cursor.isNull(offset + 0) ? null : cursor.getLong(offset + 0));
+        entity.setUserId(cursor.isNull(offset + 1) ? null : cursor.getString(offset + 1));
+        entity.setName(cursor.isNull(offset + 2) ? null : cursor.getString(offset + 2));
+        entity.setPortraitUri(cursor.isNull(offset + 3) ? null : cursor.getString(offset + 3));
+        entity.setDisplayName(cursor.isNull(offset + 4) ? null : cursor.getString(offset + 4));
+        entity.setRegion(cursor.isNull(offset + 5) ? null : cursor.getString(offset + 5));
+        entity.setPhoneNumber(cursor.isNull(offset + 6) ? null : cursor.getString(offset + 6));
+        entity.setStatus(cursor.isNull(offset + 7) ? null : cursor.getString(offset + 7));
+        entity.setTimestamp(cursor.isNull(offset + 8) ? null : cursor.getString(offset + 8));
+        entity.setNameSpelling(cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9));
+        entity.setDisplayNameSpelling(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
      }
     
     @Override
-    protected final Void updateKeyAfterInsert(Friend entity, long rowId) {
-        // Unsupported or missing PK type
-        return null;
+    protected final Long updateKeyAfterInsert(Friend entity, long rowId) {
+        entity.setId(rowId);
+        return rowId;
     }
     
     @Override
-    public Void getKey(Friend entity) {
-        return null;
+    public Long getKey(Friend entity) {
+        if(entity != null) {
+            return entity.getId();
+        } else {
+            return null;
+        }
     }
 
     @Override
     public boolean hasKey(Friend entity) {
-        // TODO
-        return false;
+        return entity.getId() != null;
     }
 
     @Override
