@@ -1,6 +1,7 @@
 package com.example.zte.day24_zte_wechat.view.adapter;
 
 import android.content.Context;
+import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -66,10 +67,10 @@ public class SessionAdapter extends BaseAdapter {
         }else {
             holder = (ViewHolder) convertView.getTag();
         }
-        if((conversation.getUnreadMessageCount()-7) > 0){
-            Log.e("he", "getView: "+conversation.getUnreadMessageCount() +"---"+conversation.getMentionedCount() );
+        Log.e("he", "getView: "+conversation.getUnreadMessageCount() +"---"+conversation.getMentionedCount() );
+        if((conversation.getUnreadMessageCount()) > 0){
             holder.mDot.setVisibility(View.VISIBLE);
-            String count = conversation.getUnreadMessageCount() - 7 + "";
+            String count = conversation.getUnreadMessageCount() + "";
             holder.mDot.setText(count);
         }else{
             holder.mDot.setVisibility(View.GONE);

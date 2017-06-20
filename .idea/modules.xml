@@ -10,8 +10,10 @@
       <module fileurl="file://$PROJECT_DIR$/PullRefresh_library/PullRefresh_library.iml" filepath="$PROJECT_DIR$/PullRefresh_library/PullRefresh_library.iml" />
       <module fileurl="file://$PROJECT_DIR$/RedPacket/RedPacket.iml" filepath="$PROJECT_DIR$/RedPacket/RedPacket.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/day19_zte_getpicfromcamera/day19_zte_getpicfromcamera.iml" filepath="$PROJECT_DIR$/day19_zte_getpicfromcamera/day19_zte_getpicfromcamera.iml" />
       <module fileurl="file://$PROJECT_DIR$/day24_zte_wechat/day24_zte_wechat.iml" filepath="$PROJECT_DIR$/day24_zte_wechat/day24_zte_wechat.iml" />
       <module fileurl="file://$PROJECT_DIR$/day24greendao/day24greendao.iml" filepath="$PROJECT_DIR$/day24greendao/day24greendao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/day28_zte_hidesoftbyeditviewids/day28_zte_hidesoftbyeditviewids.iml" filepath="$PROJECT_DIR$/day28_zte_hidesoftbyeditviewids/day28_zte_hidesoftbyeditviewids.iml" />
     </modules>
   </component>
 </project>

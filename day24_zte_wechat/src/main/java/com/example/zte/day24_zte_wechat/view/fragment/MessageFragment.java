@@ -21,6 +21,8 @@ import com.example.zte.day24_zte_wechat.view.activity.SessionActivity;
 import com.example.zte.day24_zte_wechat.view.adapter.SessionAdapter;
 import com.example.zte.greendao.DBManager;
 import com.example.zte.greendao.GroupMember;
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshListView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +38,7 @@ import io.rong.imlib.model.Conversation;
 public class MessageFragment extends BaseFragment {
     private SessionAdapter mSessionAdapter;
     @BindView(R.id.fragment_message_lv)
-    ListView mSessionList;
+    PullToRefreshListView mSessionList;
     private LocalBroadcastManager mBroadManager;
     private static MessageFragment fragment;
     private Context context;
@@ -48,6 +50,8 @@ public class MessageFragment extends BaseFragment {
             initData();
         }
     };
+
+
     public static MessageFragment getInstance(){
         if(fragment == null){
             synchronized (MessageFragment.class){
@@ -76,23 +80,17 @@ public class MessageFragment extends BaseFragment {
         mSessionList.setAdapter(mSessionAdapter);
         mBroadManager = LocalBroadcastManager.getInstance(context);
         mBroadManager.registerReceiver(receiver,new IntentFilter(ConstantsUtil.UPDATE_CONVERSATIONS));
+        mSessionList.setMode(PullToRefreshBase.Mode.BOTH);
         listener();
         return view;
-    }
-
-    @Override
-    protected void setUserData(boolean b) {
-        if(b){
-            Log.e("he", "MessageFragment-setUserData: 加载数据" );
-            initData();
-        }
     }
 
     private void listener() {
         mSessionList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Conversation conversation = mDataList.get(position);
+                Log.e("he", "onItemClick: "+position+"--"+mDataList.size() );
+                Conversation conversation = mDataList.get(position - 1);
                 Intent intent = new Intent(context, SessionActivity.class);
                 intent.putExtra("sessionId",conversation.getTargetId());
                 if(conversation.getConversationType() == Conversation.ConversationType.PRIVATE){
@@ -191,6 +189,8 @@ public class MessageFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
+        //在这里更新数据，是fragment重新加载的时候不会执行oncreateView方法。所以将数据获取放到onResume里面。
+        initData();
         Log.e(ConstantsUtil.TAG, "MessageFragment-onResume: " );
     }
 

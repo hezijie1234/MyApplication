@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     tools:context="com.example.zte.day24_zte_wechat.view.fragment.MessageFragment">
 
-    <ListView
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
         android:id="@+id/fragment_message_lv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

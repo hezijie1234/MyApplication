@@ -16,8 +16,10 @@
             <option value="$PROJECT_DIR$/PullRefresh_library" />
             <option value="$PROJECT_DIR$/RedPacket" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/day19_zte_getpicfromcamera" />
             <option value="$PROJECT_DIR$/day24_zte_wechat" />
             <option value="$PROJECT_DIR$/day24greendao" />
+            <option value="$PROJECT_DIR$/day28_zte_hidesoftbyeditviewids" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

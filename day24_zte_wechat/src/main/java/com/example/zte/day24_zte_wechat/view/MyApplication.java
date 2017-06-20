@@ -4,6 +4,7 @@ import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.widget.ImageView;
@@ -200,7 +201,7 @@ public class MyApplication extends Application implements RongIMClient.OnReceive
             sendBroadcast(ConstantsUtil.UPDATE_CONVERSATIONS);
         }else {
             sendBroadcast(UPDATE_CONVERSATIONS);
-            sendBroadcast(ConstantsUtil.UPDATE_CURRENT_SESSION);
+            sendBroadcast(ConstantsUtil.UPDATE_CURRENT_SESSION,message);
         }
         return false;
     }
@@ -246,4 +247,11 @@ public class MyApplication extends Application implements RongIMClient.OnReceive
         intent.setAction(flag);
         mBroadManager.sendBroadcast(intent);
     }
+    private void sendBroadcast(String flag,Parcelable obj){
+        Intent intent = new Intent();
+        intent.putExtra("result",obj);
+        intent.setAction(flag);
+        mBroadManager.sendBroadcast(intent);
+    }
+
 }

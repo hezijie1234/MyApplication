@@ -97,4 +97,5 @@ dependencies {
     compile files('libs/joda-time-2.5.jar')
     compile project(':PullRefresh_library')
     compile 'com.lqr.emoji:library:1.0.2'
+    compile 'de.hdodenhof:circleimageview:2.1.0'
 }

@@ -10,19 +10,21 @@
     tools:context="com.example.zte.day19_zte_getpicfromcamera.MainActivity">
 
     <Button
+        android:id="@+id/compress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="拍照获取缩略图"
-        android:onClick="compressClick"/>
+        />
     <Button
+        android:id="@+id/normal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="拍照获取正常图"
-        android:onClick="normalClick"/>
+        />
     <ImageView
         android:id="@+id/image"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:src="@mipmap/ic_launcher"
         />
 </LinearLayout>

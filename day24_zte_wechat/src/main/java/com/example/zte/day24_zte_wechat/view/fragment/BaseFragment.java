@@ -58,7 +58,7 @@ public class BaseFragment extends Fragment {
             isFirstResume = false;
             return;
         }
-        //如果不是第一次fragment可见，那说明前面，加载过数据，就不用再次加载数据了。
+//        如果不是第一次fragment可见，那说明前面，加载过数据，就不用再次加载数据了。
         if(getUserVisibleHint()){
             setUserData(false);
         }
