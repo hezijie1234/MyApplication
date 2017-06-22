@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import com.example.zte.day24_zte_wechat.R;
 import com.example.zte.day24_zte_wechat.utils.ConstantsUtil;
@@ -159,6 +160,19 @@ public class SessionActivity extends BaseActivity {
                 return false;
             }
         });
+
+        //设置下拉加载更多
+        mListView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener2<ListView>() {
+            @Override
+            public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+                getLocalHistoryMessagee();
+            }
+
+            @Override
+            public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+
+            }
+        });
     }
 
     private void initData() {
@@ -197,7 +211,8 @@ public class SessionActivity extends BaseActivity {
         });
         //注册广播，当在聊天时，有人发送信息过来，及时更新聊天界面
         mLocalManager.registerReceiver(mCurrentReceiver,new IntentFilter(ConstantsUtil.UPDATE_CURRENT_SESSION));
-
+        //加载会话信息。
+        getLocalHistoryMessagee();
 
     }
 
@@ -219,6 +234,7 @@ public class SessionActivity extends BaseActivity {
                 if(null == messages || messages.size() == 0){
                     getRemoteHistoryMessage();
                 }else {
+                    mListView.onRefreshComplete();
                     saveMessage(messages);
                 }
             }
@@ -234,10 +250,32 @@ public class SessionActivity extends BaseActivity {
         for(Message message :messages){
             mDataList.add(0,message);
         }
+        ListView listView = mListView.getRefreshableView();
+        if(mDataList.size() >= messages.size()){
+            listView.smoothScrollToPosition(messages.size() - 1);
+            sessionItemAdapter.notifyDataSetChanged();
+        }
     }
 
     private void getRemoteHistoryMessage() {
+        long dateTime = 0;
+        if(mDataList.size() > 0){
+            dateTime = mDataList.get(0).getSentTime();
+        }
+        RongIMClient.getInstance().getRemoteHistoryMessages(mConversationType, sessionId, dateTime, 8, new RongIMClient.ResultCallback<List<Message>>() {
+            @Override
+            public void onSuccess(List<Message> messages) {
+                if(null != messages && messages.size() > 0){
+                    mListView.onRefreshComplete();
+                    saveMessage(messages);
+                }
+            }
 
+            @Override
+            public void onError(RongIMClient.ErrorCode errorCode) {
+
+            }
+        });
     }
 
     ;

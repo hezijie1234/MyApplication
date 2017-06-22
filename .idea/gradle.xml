@@ -19,7 +19,9 @@
             <option value="$PROJECT_DIR$/day19_zte_getpicfromcamera" />
             <option value="$PROJECT_DIR$/day24_zte_wechat" />
             <option value="$PROJECT_DIR$/day24greendao" />
+            <option value="$PROJECT_DIR$/day28_zte_broadreceiver" />
             <option value="$PROJECT_DIR$/day28_zte_hidesoftbyeditviewids" />
+            <option value="$PROJECT_DIR$/day29_zte_fileutils_test" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

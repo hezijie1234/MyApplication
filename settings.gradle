@@ -1,2 +1,2 @@
-include ':app', ':day24_zte_wechat', ':IMLib', ':CallLib', ':IMKit', ':CallKit', ':RedPacket', ':day24greendao', ':PullRefresh_library', ':day19_zte_getpicfromcamera', ':day28_zte_hidesoftbyeditviewids'
+include ':app', ':day24_zte_wechat', ':IMLib', ':CallLib', ':IMKit', ':CallKit', ':RedPacket', ':day24greendao', ':PullRefresh_library', ':day19_zte_getpicfromcamera', ':day28_zte_hidesoftbyeditviewids', ':day28_zte_broadreceiver', ':day29_zte_fileutils_test'
 
