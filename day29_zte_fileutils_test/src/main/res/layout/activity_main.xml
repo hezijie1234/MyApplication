@@ -19,4 +19,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="换成图片到本地"/>
+    <Button
+        android:id="@+id/go_to_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="跳转去选择时间"/>
 </LinearLayout>
